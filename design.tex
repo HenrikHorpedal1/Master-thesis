@@ -2,6 +2,31 @@
 
 \chapter{Design}
 \section{Mechanical}
+
+The Moteus motor controller uses a diamterically magnetized magnet in order to get feedback from the motor. 
+
+"If using 3D printed mounts, care should be taken to ensure the mount does not warp. PLA and other low temperature filaments will warp under load at room temperature, and will do so even more when exposed to thermal heating like from a motor controller. It is recommended to use PETG, PC, or a filament designed to not warp at the operating temperature you intend."
+\citep{mjbots_moteus_mechanical_setup}
+
+In order to mount the Moteus controller precisesly in relation to the motor and magnet, a bracket to 
+mount the motor controller on the back of the motor was designed in Autodesk Fusion, see \autoref{fig:bracket}
+and \autoref{fig:bracket2}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.48\textwidth]{fig/moteus-motor-bracket-over.PNG}\hfill
+  \includegraphics[width=0.48\textwidth]{fig/moteus-motor-bracket-under.PNG}
+  \caption{}
+  \label{fig:bracket}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{fig/moteus-motor-bracket-inside.PNG}
+  \caption{}
+  \label{fig:bracket2}
+\end{figure}
+
 \section{Hardware}
 \section{Software}
 
