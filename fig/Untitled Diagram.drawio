@@ -1,0 +1,84 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="29.3.8">
+  <diagram name="Page-1" id="7l5AHlOrCGR8ojgyE65I">
+    <mxGraphModel dx="1454" dy="984" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-2" edge="1" parent="1" source="w1R9jMfnEEqYDk4lYmIU-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="w1R9jMfnEEqYDk4lYmIU-3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="180" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-4" connectable="0" parent="w1R9jMfnEEqYDk4lYmIU-2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="midi beat&lt;div&gt;clock&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2571" as="geometry">
+            <mxPoint x="10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="DAW" vertex="1">
+          <mxGeometry height="60" width="120" x="10" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-5" edge="1" parent="1" source="w1R9jMfnEEqYDk4lYmIU-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="w1R9jMfnEEqYDk4lYmIU-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-6" connectable="0" parent="w1R9jMfnEEqYDk4lYmIU-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="continous phase&lt;br&gt;&lt;div&gt;and BPM estimate&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.03" as="geometry">
+            <mxPoint x="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="PLL" vertex="1">
+          <mxGeometry height="60" width="120" x="220" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-8" edge="1" parent="1" source="w1R9jMfnEEqYDk4lYmIU-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="w1R9jMfnEEqYDk4lYmIU-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-10" connectable="0" parent="w1R9jMfnEEqYDk4lYmIU-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="rpm and angle&lt;div&gt;reference&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.2145" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Mapping to RPM and&lt;div&gt;angle&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="450" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-11" edge="1" parent="1" source="w1R9jMfnEEqYDk4lYmIU-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="w1R9jMfnEEqYDk4lYmIU-15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="890" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-12" connectable="0" parent="w1R9jMfnEEqYDk4lYmIU-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="CAN-FD" vertex="1">
+          <mxGeometry relative="1" x="-0.1576" y="-3" as="geometry">
+            <mxPoint y="-13" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="PID controller" vertex="1">
+          <mxGeometry height="60" width="120" x="710" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-16" edge="1" parent="1" source="w1R9jMfnEEqYDk4lYmIU-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="w1R9jMfnEEqYDk4lYmIU-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1079.9999999999998" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Moteus speed&lt;div&gt;controller&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="900" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-18" edge="1" parent="1" source="w1R9jMfnEEqYDk4lYmIU-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w1R9jMfnEEqYDk4lYmIU-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-19" edge="1" parent="1" source="w1R9jMfnEEqYDk4lYmIU-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="w1R9jMfnEEqYDk4lYmIU-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150" y="290" />
+              <mxPoint x="770" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1R9jMfnEEqYDk4lYmIU-17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="motor" vertex="1">
+          <mxGeometry height="60" width="120" x="1090" y="350" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

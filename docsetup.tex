@@ -10,11 +10,11 @@
 \usepackage[pdftex,bookmarks=true]{hyperref}
 \usepackage[pdftex]{hyperref}
 \hypersetup{
-    colorlinks,%
-    citecolor=black,%
-    filecolor=black,%
-    linkcolor=black,%
-    urlcolor=black
+	colorlinks,%
+	citecolor=black,%
+	filecolor=black,%
+	linkcolor=black,%
+	urlcolor=black
 }
 \usepackage{svg} % allows inclusion of SVGs
 \usepackage[font=small,labelfont=bf]{caption}
@@ -25,6 +25,46 @@
 %\makenomenclature
 \usepackage{natbib}
 \usepackage{float}
+
+
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{calc, decorations.pathmorphing, decorations.markings, arrows.meta}
+
+\tikzset{>=latex}
+
+\colorlet{discfill}{blue!8}
+\colorlet{myblue}{blue!70!black}
+
+% Spring / damper / belt styles
+\tikzset{
+	spring/.style = {
+			line width=0.85pt,
+			decorate,
+			decoration={zigzag, amplitude=4pt, segment length=7pt,
+					pre length=5pt, post length=5pt}
+		},
+	damper/.style = {
+			thick,
+			decoration={
+				markings,
+				mark connection node=dmp,
+				mark=at position 0.5 with {
+					\node (dmp) [thick, inner sep=0pt, transform shape, rotate=-90,
+					             minimum width=25pt, minimum height=5pt, draw=none] {};
+					\draw [thick] ($(dmp.north east)+(2pt,0)$) -- (dmp.south east)
+					              -- (dmp.south west) -- ($(dmp.north west)+(2pt,0)$);
+					\draw [thick] ($(dmp.north)+(0,-8pt)$) -- ($(dmp.north)+(0,8pt)$);
+				}
+			},
+			decorate
+		},
+	belt/.style   = {line width=0.75pt},
+	disc/.style   = {fill=discfill, line width=1.1pt},
+	force/.style  = {->, line width=0.95pt},
+	disp/.style   = {<-, line width=1.2pt},
+}
+
 %\floatstyle{boxed} 
 \restylefloat{figure}
 

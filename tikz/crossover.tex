@@ -1,0 +1,29 @@
+\begin{circuitikz}[american]
+    \node[left] at (0,6) {Amp.\,In$+$};
+    \node[left] at (0,0) {Amp.\,In$-$};
+
+    % Input wire to split junction
+    \draw (0,6) to[short, o-] (2,6) node[circ] {};
+
+    % C1 in the horizontal lead (horn series capacitor)
+    \draw (2,6) to[C, l=$C_1{=}18\;\mathrm{\mu F}$] (7,6) node[circ] {};
+
+    % Woofer branch: L1 in series, then woofer straight down to ground
+    \draw (2,6) to[L, l=$L_1{=}1.6\;\mathrm{mH}$] (2,3.5);
+    \draw (2,3.5) to[loudspeaker, l=Woofer] (2,1);
+    \draw (2,1) -- (2,0);
+    \node[circ] at (2,0) {};
+
+    % L2 shunt from horn junction down to ground
+    \draw (7,6) to[L, l_=$L_2{=}1.6\;\mathrm{mH}$] (7,0);
+    \node[circ] at (7,0) {};
+
+    % Horn driver: short wire right from junction, then down to ground
+    \draw (7,6) -- (8,6);
+    \draw (8,6) to[loudspeaker, l=Horn] (8,1);
+    \draw (8,1) -- (8,0);
+    \node[circ] at (8,0) {};
+
+    % Ground rail
+    \draw (0,0) to[short, o-] (9,0);
+\end{circuitikz}

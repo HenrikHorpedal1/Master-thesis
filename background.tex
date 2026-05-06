@@ -1,28 +1,279 @@
 %===================================== CHAP 2 =================================
 
-\chapter{Background}
+\chapter{Theory}
 
-\section{the MIDI Protocol}
+\section{Technical explanation of a Leslie speaker}
 
-\section{Crossover networks}
+\subsection{Explaiantion of the effect}
 
-\section{Cabinet}
+\section{Previous work on this project, litt usikker hvor dette kan passe}
+referere til prosjektoppgaven forklare hva status var da det prosjektet var ferdig.
+Hva var nyttige erfaringer å ta med videre derifra osv.
+
+
+%\section{Crossover networks}
+
 
 \section{Horn Theory}
-Use \citep{Kolbrek2008HornTheoryPart1} and \citep{Kolbrek2008HornTheoryPart2}.
+An acoustic horn is a waveguide that couples a driver to the surrounding air. The primary function of the horn is acoustic impedance transformation: the compression driver at the throat operates into a high acoustic impedance, while free air at the mouth presents a low impedance. By gradually expanding the cross-sectional area, the horn acts as an acoustic transformer, increasing radiation efficiency significantly compared to a bare driver \citep{Kolbrek2008HornTheoryPart1}.
 
-\section{Brush-less Direct Current Motors}
+The most common horn profile is the exponential horn (verifiser med kilde), in which the cross-sectional area $S$ increases exponentially along the axis:
+\begin{equation}
+	S(x) = S_0\,e^{mx}
+	\label{eq:horn-area}
+\end{equation}
+where $S_0$ is the throat area, $x$ is the distance from the throat(noe med acustic centerline), and $m$ is the flare constant that controls the rate of expansion. A key property of the exponential horn is its cutoff frequency \citep{Kolbrek2008HornTheoryPart1}:
+\begin{equation}
+	f_c = \frac{mc}{4\pi}
+	\label{eq:horn-cutoff}
+\end{equation}
+where $c \approx 343\,\text{m/s}$ is the speed of sound. Below $f_c$ the horn no longer supports propagating waves---acoustic pressure decays exponentially along the axis and radiation is strongly attenuated. Only frequencies above $f_c$ are efficiently radiated, so the choice of flare constant $m$ directly determines the lower bound of the horn's usable frequency range.
 
-\section{Midi Time Clock}
+\section{Brushless Direct Current Motor}
 
-\section{Synchronization}
-\subsection{Phase-locked Loop}
+The brushless DC (BLDC) motor is known under several different names in the literature. As noted by Hughes \& Drury \citep{hughes2013electric}, the industrial and academic communities have given multiple different names to essentially the same machine, including permanent magnet synchronous motor (PMSM), brushless permanent magnet synchronous motor, brushless AC motor, and permanent magnet servo motor. The term BLDC was originally introduced in the 1970s to describe motors intended as direct replacements for conventional DC motors \cite{hughes2013electric}. While minor differences exist between the variants, they all operate on the same basic principle: a three-phase motor with permanent magnets on the rotor and windings on the stator, where commutation is handled electronically rather than through brushes. (In this thesis, the term BLDC motor is used throughout, as it aligns with the terminology used in the motor datasheet and the moteus c1 controller documentation.)
+
+\subsection{Construction and gouverning effects (lag bedre overskrift)}
+- vis utsnitt av motoren
+- forklar de fysiske lovene som genererer dreiemoment.
+
+\subsection{Field Oriented Control}
+Introduser med problememene med pwm og sinus control,
+
+%\section{Cogging}
+
+\section{Phase-locked Loop}
+A phase-locked loop (PLL) is a circuit which has the purpose of synchronizing an output signal
+with a reference signal in both phase and frequency \citep[1]{best1993_pll}. In such a case the phase of the output
+is said that to locked onto the input signal, therefore giving it its name, phase-locked loop. The first PLLs were introduced in
+1932 by the french engineer Henri de Bellescize \cite{deBellescize1932ReceptionSynchrone}, but found its broad indistial application only after becomming available
+as an integrated circuit (IC) around 1965 \citep{best1993_pll}. A general PLL can be explained by considering the linear variant,
+the linear phase-locked loop (LPLL). Its main operating principles are shown in
+
+\begin{figure}[H]
+	\centering
+	\input{tikz/PLL-diagram.tex}
+	\caption{Block diagram of a linear phase-locked loop (LPLL).}
+	\label{fig:pll-diagram}
+\end{figure}
+
+
+\subsection{Software Phase-locked Loop}
+synchrous communication
+
+
 \citep{Moore1973PLL} for circuit PLL for motors
-\subsection{Cascade Control}
-\section{CAN}
+
+\section{Cascade Control}
+- fortell om prinsipper for valg av båndbredde mellom loopsene osv
+
+\section{Controller Area Network}
+\subsection{Message Frame Architecture}
+Communication in CAN is done through
+
+\citep{voss2008can}
+
+
+
+\subsection{Physical Layer}
+\subsection{Bus Arbitration}
+
 \subsubsection{CAN-fd}
 
-\section{Prevois Work}
+\section{the MIDI Protocol}
+\subsection{Midi clock}
+\subsubsection{MIDI messages and byte format}
+\subsubsection{Examples}
 
 
+\section{Modelling friction belt drive}
+The derivation of the equations of motion in this section is based on section 4.6.5, Belt Drives in \cite{isermann2005mechatronic}. Note that there is a change in the notation.
+
+The belt drive of a typical Leslie speaker is a friction belt drive.
+Friction belt drives follow the laws of rope friction. Different examples of friction belt drives include flat belt, round belt and V-belt transmission (TODO: find source confirming V-belt is also a friction belt drive). When correctly designed, these power transmission systems deliver low slip and an almost constant transmission ratio. (TODO: finne kilde om mekanisk støy og legge inn motsetning mot synkronbelte)
+
+In order to develop the equations of motion for the friction belt a set of simplifying assumptions about the system are made:
+\begin{itemize}
+	\item The belt has no mass.
+	\item The distance between the pulley centres are constant.
+	\item Centrifugal forces are neglected.
+	\item Deformation of pulleys and shafts are negligible compared to belt deformation.
+	\item For a certain load, the elasticity of the belt is assumed to follow Hooke's law.
+	\item Extension slip only occurs.
+\end{itemize}
+
+forklar extension slip (også kalt creep).
+
+The system can be represented with \autoref{fig:belt_drive}.
+
+\begin{figure}[htbp]
+	\centering
+	\input{tikz/belt_drive_system.tex}
+	\caption{Two pulley drive system. Figure recreated from \cite{isermann2005mechatronic}}
+	\label{fig:belt_drive}
+\end{figure}
+
+The symbols in \autoref{fig:belt_drive} are explained in \autoref{tab:symbol-explaination}.
+
+\begin{table}[h]
+	\caption{}\label{tab:symbol-explaination}
+	\begin{center}
+		\begin{tabular}[c]{l|l}
+			\hline
+			\multicolumn{1}{c|}{\textbf{Symbol}}    &
+			\multicolumn{1}{c}{\textbf{Explanation}}                                                                        \\
+			\hline
+			$\theta_m(t),\theta_L(t)$               & angular position of motor and load                                    \\
+			$\dot{\theta}_m(t),\dot{\theta}_L(t)$   & angular velocity of motor and load                                    \\
+			$\ddot{\theta}_m(t),\ddot{\theta}_L(t)$ & angular acceleration of motor and load                                \\
+			$J_m, J_L$                              & moment of inertia of motor and load (finn ut om effective eller ikke) \\
+			$r_m, r_L$                              & effective radius of motor and load pulley.                            \\
+			$F_v$                                   & Pretensioning force.                                                  \\
+			$F_{tight}, F_{slack}$                  & force of belt, tight and slack side.                                  \\
+			$c_R$                                   & belt spring stiffness factor                                          \\
+			$d_R$                                   & belt damping coefficient                                              \\
+			$\Delta l_{tight}, \Delta l_{slack} $   & length variation, tight and slack side.                               \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+The spring stiffness factor is assumed to be estimated with
+\begin{equation}
+	c_R = \frac{EA}{l_R}
+	\label{eq:spring_stifness}
+\end{equation}
+where $EA$ is the spring stiffness factor and $l_R$ is the belt length on the tight or slack side.
+(finn ut om hvordan estimere EA)
+
+The belt damping coefficient $d_R$ is given by
+\begin{equation}
+	d_R = \frac{\Psi c_R}{2\pi\dot{\theta}_{L,0}}
+	\label{eq:damping_coeff}
+\end{equation}
+where $\dot{\theta}_{L,0}$ is the angular velocity of the operating point, and $\Psi$ is the relative damping of the belt which can be experimentally determined (finn ut hvordan).
+
+With these assumptions in place we get the following equation of motion for the motor side using a moment balance
+\begin{equation}
+	J_m \ddot{\theta}_m(t) = T_m(t) - r_m (F_{tight}(t)-F_{slack}(t))
+	\label{eq:motor-side-moment-balance}
+\end{equation}
+and for the load side
+\begin{equation}
+	J_L \ddot{\theta}_L(t) = -T_L(t) + r_L (F_{tight}(t)-F_{slack}(t))
+	\label{eq:load-side-moment-balance}
+\end{equation}
+
+with
+\begin{equation}
+	F_{tight}(t) = F_v + c_R\Delta l_{tight}(t) + d_R \Delta\dot{l}_{tight}(t)
+	\label{eq:tight-force}
+\end{equation}
+
+\begin{equation}
+	F_{slack}(t) = F_v - c_R\Delta l_{slack}(t) - d_R \Delta\dot{l}_{slack}(t)
+	\label{eq:slack-force}
+\end{equation}
+
+Inserting \autoref{eq:tight-force} and \autoref{eq:slack-force} into \autoref{eq:motor-side-moment-balance} and \autoref{eq:load-side-moment-balance}, and noting that the pretensioning force $F_v$ cancels, gives:
+\begin{equation}
+	J_m \ddot{\theta}_m(t) + r_m\bigl[c_R(\Delta l_{tight}(t) + \Delta l_{slack}(t)) + d_R(\Delta\dot{l}_{tight}(t) + \Delta\dot{l}_{slack}(t))\bigr] = T_m(t)
+	\label{eq:motor-side-belt-compression}
+\end{equation}
+and
+\begin{equation}
+	J_L \ddot{\theta}_L(t) - r_L\bigl[c_R(\Delta l_{tight}(t) + \Delta l_{slack}(t)) + d_R(\Delta\dot{l}_{tight}(t) + \Delta\dot{l}_{slack}(t))\bigr] = -T_L(t)
+	\label{eq:load-side-belt-compression}
+\end{equation}
+
+Friction belt transmission always operates with a small load-dependent slip. The slip can be described by
+\begin{equation}
+	s = \frac{v_{m} - v_{L}}{v_m}
+	\label{eq:slip-equation}
+\end{equation}
+where $v_m$ and $v_L$ are the peripheral linear velocities at the motor and load pulleys, given by
+\begin{equation}
+	v_m = r_m \dot{\theta}_m
+	\label{eq:linear-velocity-m}
+\end{equation}
+\begin{equation}
+	v_L = r_L \dot{\theta}_L
+	\label{eq:linear-velocity-l}
+\end{equation}
+
+Combining \autoref{eq:slip-equation} with \autoref{eq:linear-velocity-m} and \autoref{eq:linear-velocity-l}
+gives the actual transmission ratio of the friction belt:
+\begin{equation}
+	i = \frac{\dot{\theta}_m}{\dot{\theta}_L} = \frac{1}{1-s}\frac{r_L}{r_m} = \frac{i_0}{1-s}
+	\label{eq:pulley-ratio}
+\end{equation}
+where $i_0 = r_L / r_m$ is the ideal (no-slip) transmission ratio.
+
+By applying the extension slip assumption at the break-in and break-out points of both pulleys, and approximating the unknown intermediate belt speeds with the peripheral pulley speeds \cite{isermann2005mechatronic}, the rates of change of the belt length deviations on the tight and slack sides are
+\begin{equation}
+	\dot{\Delta l}_{tight}(t) = r_m\dot{\theta}_m(t) - \frac{r_L}{1-s}\,\dot{\theta}_L(t)
+	\label{eq:dl-tight-rate}
+\end{equation}
+\begin{equation}
+	\dot{\Delta l}_{slack}(t) = (1-s)\,r_m\dot{\theta}_m(t) - r_L\dot{\theta}_L(t)
+	\label{eq:dl-slack-rate}
+\end{equation}
+
+Using \autoref{eq:pulley-ratio} to substitute $r_L/(1-s) = i\,r_m$, \autoref{eq:dl-tight-rate} and \autoref{eq:dl-slack-rate} become
+\begin{equation}
+	\dot{\Delta l}_{tight}(t) = r_m\bigl(\dot{\theta}_m(t) - i\,\dot{\theta}_L(t)\bigr)
+\end{equation}
+\begin{equation}
+	\dot{\Delta l}_{slack}(t) = r_m(1-s)\bigl(\dot{\theta}_m(t) - i\,\dot{\theta}_L(t)\bigr)
+\end{equation}
+
+Treating $s$ as constant at a given operating point and integrating gives the belt length deviations:
+\begin{equation}
+	\Delta l_{tight}(t) = r_m\bigl(\theta_m(t) - i\,\theta_L(t)\bigr)
+	\label{eq:delta-l-tight}
+\end{equation}
+\begin{equation}
+	\Delta l_{slack}(t) = r_m(1-s)\bigl(\theta_m(t) - i\,\theta_L(t)\bigr)
+	\label{eq:delta-l-slack}
+\end{equation}
+
+Summing the tight and slack side contributions:
+\begin{equation}
+	\Delta l_{tight}(t) + \Delta l_{slack}(t) = r_m(2-s)\bigl(\theta_m(t) - i\,\theta_L(t)\bigr)
+	\label{eq:delta-l-sum}
+\end{equation}
+\begin{equation}
+	\dot{\Delta l}_{tight}(t) + \dot{\Delta l}_{slack}(t) = r_m(2-s)\bigl(\dot{\theta}_m(t) - i\,\dot{\theta}_L(t)\bigr)
+	\label{eq:delta-ldot-sum}
+\end{equation}
+
+Substituting \autoref{eq:delta-l-sum} and \autoref{eq:delta-ldot-sum} into \autoref{eq:motor-side-belt-compression} and \autoref{eq:load-side-belt-compression}, and defining the dynamical torsional stiffness $c_{DT}$ and damping coefficient $d_{DT}$ as
+\begin{equation}
+	c_{DT} = (2-s)\,r_m^2\,c_R \quad \text{[Nm/rad]}
+	\label{eq:c-dt}
+\end{equation}
+\begin{equation}
+	d_{DT} = (2-s)\,r_m^2\,d_R \quad \text{[Nm\,s/rad]}
+	\label{eq:d-dt}
+\end{equation}
+one obtains the differential equations of motion for the friction belt drive system:
+\begin{equation}
+	J_m\ddot{\theta}_m(t) + d_{DT}\bigl(\dot{\theta}_m(t) - i\,\dot{\theta}_L(t)\bigr) + c_{DT}\bigl(\theta_m(t) - i\,\theta_L(t)\bigr) = T_m(t)
+	\label{eq:motor-final}
+\end{equation}
+\begin{equation}
+	J_L\ddot{\theta}_L(t) - i_0\bigl[d_{DT}\bigl(\dot{\theta}_m(t) - i\,\dot{\theta}_L(t)\bigr) + c_{DT}\bigl(\theta_m(t) - i\,\theta_L(t)\bigr)\bigr] = -T_L(t)
+	\label{eq:load-final}
+\end{equation}
+Equations \autoref{eq:motor-final} and \autoref{eq:load-final} describe the dynamic behaviour of the friction belt drive as a two-mass oscillator.
+
+\section{Motor and load with elastic transmission}
+\citep{egeland2002modeling} derives the equations of motion of a more general system.
+
+
+
+
+\section{Previous Work}
+This project was initially started
 \cleardoublepage
+

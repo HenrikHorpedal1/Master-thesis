@@ -1,0 +1,84 @@
+================================================================================
+  NVIM + LATEX CHEAT SHEET
+  Leader = Space | LocalLeader = \
+================================================================================
+
+── LATEX (vimtex) ──────────────────────────────────────────────────────────────
+
+  <Space>ll   Toggle continuous compiler (latexmk, auto-recompiles on save)
+  <Space>lv   Forward search — jump to cursor position in Skim
+  <Space>lt   Toggle table of contents panel
+  <Space>le   Open error/warning list (quickfix)
+  <Space>lc   Clean build artifacts (build/)
+  <Space>lk   Kill compiler
+
+  Skim: Cmd+Shift+Click   Inverse search — jump back to line in nvim
+
+  \ll  \lv  \lt  \le  (same as above, backslash variants)
+
+── NAVIGATION ──────────────────────────────────────────────────────────────────
+
+  <Space>ff   Find files (Telescope)
+  <Space>fg   Live grep across all files
+  <Space>fb   List open buffers
+  <Space>fh   Search help tags
+  <Space>e    Toggle file explorer (nvim-tree)
+
+── WINDOW SPLITS ───────────────────────────────────────────────────────────────
+
+  <Space>sh/sj/sk/sl   Move focus left/down/up/right
+  <Space>vt            Open terminal in vertical split
+  <Space>ht            Open terminal in horizontal split
+  jk (terminal)        Exit terminal mode to normal mode
+
+── LSP ─────────────────────────────────────────────────────────────────────────
+
+  gd          Go to definition
+  gD          Go to declaration
+  gr          Go to references
+  K           Hover documentation
+  <Space>rn   Rename symbol
+  <Space>ca   Code action
+  <Space>d    Show diagnostic under cursor
+  [d / ]d     Previous / next diagnostic
+
+── EDITING ─────────────────────────────────────────────────────────────────────
+
+  gcc         Toggle comment (current line)
+  gc          Toggle comment (visual selection)
+  jk          Exit insert mode (instead of Esc)
+  <Space>w    Save
+  <Space>q    Quit
+  <Space>x    Save and quit
+  x           Delete char without yanking
+
+── LATEX TEXT OBJECTS (vimtex) ─────────────────────────────────────────────────
+
+  vae / dae   Select/delete around environment  (\begin...\end)
+  vie / die   Select/delete inside environment
+  vac / dac   Select/delete around command       (\cmd{...})
+  vic / dic   Select/delete inside command
+  %           Jump between \begin and \end
+
+── FOLDING (sections/environments) ────────────────────────────────────────────
+
+  za          Toggle fold under cursor
+  zM          Close all folds (collapse entire document)
+  zR          Open all folds
+  zc / zo     Close / open fold under cursor
+
+── SNIPPETS & COMPLETION ───────────────────────────────────────────────────────
+
+  Tab / S-Tab   Select next/prev completion item, or jump snippet placeholder
+  Ctrl-Space    Trigger completion manually
+  Ctrl-n/p      Next/prev completion item
+  Enter         Confirm completion
+
+── SPELL CHECK (auto-enabled in .tex files) ────────────────────────────────────
+
+  ]s / [s     Next / previous misspelled word
+  z=          Show spelling suggestions
+  zg          Add word to dictionary
+  zw          Mark word as misspelled
+
+================================================================================

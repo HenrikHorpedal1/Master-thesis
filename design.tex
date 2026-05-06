@@ -1,35 +1,185 @@
 %===================================== CHAP 3 =================================
 
 \chapter{Design}
-\section{Mechanical}
 
-The Moteus motor controller uses a diamterically magnetized magnet in order to get feedback from the motor. 
+\section{Electronics}
+
+\subsection{Moteus}
+
+\subsection{Arduino Nano Esp32}
+
+\subsection{CAN Breakout board}
+
+\subsubsection{CAN bus schematic}
+
+
+\subsection{}
+
+In order for the Arduino Nano esp32 to communicate with the moteus c1 motor contorller with CAN fd, a CAN-fd
+tranciever and receiver is needed.
+\citep{soldered_mcp2518_overview}
+
+\subsection{Speakers}
+justify the choice of speakers EV1824M
+Celestion
+\subsection{Crossover network}
+In classis Leslie speakers like the Leslie 122, a crossover network splits the audio signal from the amplifier with bass going to the bottom woofer and treble to the upper horn driver. The filter is a 2nd order butterwourth filter with with the crossover placed at 800Hz(sett inn kilde).
+
+However since this Leslie build is more aimed at being used with guitar and organ a little less bass is needed since the guitar doesnt have as much bass frequency as an Organ.
+
+
+The following crossover was designed based on parts earlier accuired.
+
+\begin{figure}[H]
+	\centering
+	\input{tikz/crossover.tex}
+	\caption{Passive crossover network. $L_1$ forms a low-pass section routing low frequencies to the woofer. $C_1$ and shunt $L_2$ form a second-order high-pass section routing high frequencies to the horn driver.}
+	\label{fig:crossover}
+\end{figure}
+
+For the woofer low-pass section, the series inductor $L_1$ with a nominal speaker impedance of $R = 8\,\Omega$ gives a first-order $-3\,\text{dB}$ cutoff frequency of
+\[
+	f_L = \frac{R}{2\pi L_1} = \frac{8}{2\pi \times 1.6 \times 10^{-3}} \approx 796\,\text{Hz}
+\]
+For the horn high-pass section, $C_1$ and $L_2$ form an $LC$ network whose natural frequency is
+\[
+	f_H = \frac{1}{2\pi\sqrt{L_2 C_1}} = \frac{1}{2\pi\sqrt{1.6\times10^{-3} \times 18\times10^{-6}}} \approx 938\,\text{Hz}
+\]
+
+\citep{dickason_loudspeaker_cookbook}. \textbf{[TODO: verifiser kilde.]}
+
+\section{Mechanical}
+Justify why the rotors are not enclosed to increase the AM-modulation.
+
+\subsection{Cabinet design}
+quote Celestions website that the Thiele small parameters does not matter in a highly non linear guitar speaker.
+
+\subsection{Motor bracket}
+
+The Moteus motor controller uses a diametrically magnetized magnet in order to get feedback from the motor.
 
 "If using 3D printed mounts, care should be taken to ensure the mount does not warp. PLA and other low temperature filaments will warp under load at room temperature, and will do so even more when exposed to thermal heating like from a motor controller. It is recommended to use PETG, PC, or a filament designed to not warp at the operating temperature you intend."
 \citep{mjbots_moteus_mechanical_setup}
 
-In order to mount the Moteus controller precisesly in relation to the motor and magnet, a bracket to 
+"
+If using the default onboard encoder, the following steps must be taken:
+
+A diametrically magnetized sense magnet should be attached to the rotor. The fastening must be rigid, allowing no slip. Adhesive is generally required, cyanoacrylate or epoxy can be used.
+The moteus controller must be mounted so that the encoder is (a) centered laterally on the sense magnet and (b) has an air-gap of approximately 2mm. This mount must be rigid and allow no slip.
+" \citep{mjbots_moteus_mechanical_setup}
+
+In order to mount the Moteus controller precisely in relation to the motor and magnet, a 3D model
+of the BLDC motor which to be used was designed in Autodesk Fusion, based of the spesifications in \autoref{app:motor},
+
+
+A 3D model of
+the Moteus c1 controller circuit board was downloaded from the mj bots website. Then a bracket to
 mount the motor controller on the back of the motor was designed in Autodesk Fusion, see \autoref{fig:bracket}
 and \autoref{fig:bracket2}
 
+
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.48\textwidth]{fig/moteus-motor-bracket-over.PNG}\hfill
-  \includegraphics[width=0.48\textwidth]{fig/moteus-motor-bracket-under.PNG}
-  \caption{}
-  \label{fig:bracket}
+	\centering
+	\includegraphics[width=0.48\textwidth]{fig/only-motor.PNG}\hfill
+	\includegraphics[width=0.48\textwidth]{fig/motor-and-bracket.PNG}\hfill
+	\includegraphics[width=0.48\textwidth]{fig/moteus-motor-bracket-over.PNG}\hfill
+	\caption{}
+	\label{fig:bracket}
 \end{figure}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.8\textwidth]{fig/moteus-motor-bracket-inside.PNG}
-  \caption{}
-  \label{fig:bracket2}
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig/moteus-motor-bracket-inside.PNG}
+	\caption{Motor is blue, motor driver is yellow and magnet is orange.}
+	\label{fig:bracket2}
 \end{figure}
 
-\section{Hardware}
+\subsection{Horn driver}
+The original horn driver used in the Leslie 122 is the Jensen V21 (legg in kilde). A frequency response curve of this particular
+speaker was not retrievable. However studying vendors selling replacement horn drivers it is possible to infer the preferred frequency
+range.
+
+The Electro Voice 1825M was bought from finn.no for 600 kr. According to its datasheet (see \autoref{app:EV1824M} it has delivers
+plus minus 5 dB between 300 to 4500 Hz.
+
+
+\subsection{Design of Horn}
+
+Si noe om at dette ikke er et perfekt akustisk horn, men heller en måte å flytte lyden til å peke ut
+
+A picture of a Leslie horn next to a ruler was found on the internet (putt inn bilde i vedlegg) with the ruler in the same picture it made it possible to infer some of the dimensions of this horn. The diameter of the throat was approximated to ... with the use of (online tool) and the length of the horn projected down in a xy-plane was approximated to yy.
+
+This was used as a starting point for the design.
+
+The center line of the horn was parameterized into a straight section of legth x a circle sector with radius y and angle x and then a nother straight line, see figure løkj
+
+
+Then AI was used to generate a script generating circles along the centerline with areas corresponding to (referer til horn-equation i background). The circles was then connected with the use of loft in autodesk fusion to generate the Airway of the horn (forlkar hva det betyr.). The parameters of blabla was determined more by practical echanical constraintes, (the turning radius is way to steep, finn kilde som siser at den skal være x antall større enn diameter.
+
+To verify the design the equation from background was used. Here it is assumed the horn is straight something it obviously is not, så si noe om at det er en stor antagelse.
+
+
+The flare constant $m$ can be determined from the throat diameter $d_t = 22\,\text{mm}$, mouth diameter $d_m = 101.6\,\text{mm}$, and acoustic centreline length $L = 285\,\text{mm}$. The throat and mouth areas are
+\[
+	S_0 = \pi\!\left(\frac{d_t}{2}\right)^{\!2} = \pi(0.011)^2 \approx 3.80\times10^{-4}\,\text{m}^2, \qquad
+	S_L = \pi\!\left(\frac{d_m}{2}\right)^{\!2} = \pi(0.0508)^2 \approx 8.11\times10^{-3}\,\text{m}^2
+\]
+From \autoref{eq:horn-area}, the flare constant is
+\[
+	m = \frac{\ln(S_L/S_0)}{L} = \frac{\ln(21.3)}{0.285} \approx 10.7\,\text{m}^{-1}
+\]
+Substituting into \autoref{eq:horn-cutoff} gives the cutoff frequency
+\[
+	f_c = \frac{mc}{4\pi} = \frac{10.7\times 343}{4\pi} \approx 293\,\text{Hz}
+\]
+This is below the driver's rated lower limit of 300\,Hz, confirming that the horn supports the full operating range of the driver.
+
+The Horn it self could then be designed around the airway of the horn, similarly to other Leslies a dummy horn placed på motsatt side was added in order to place the center of mass on the axis of rotation.
+
+\subsection{Rotor Speaker}
+
+
+
+
+\subsection{Bearing and bearing seat}
+\subsection{}
+
+
+
+\subsubsection{Bearing and bearing seat}
+A bearing of type (6306.2zr.c3 kulelager) was bought on Finn.no for 50 kr. A seat to mount the bearing was designed
+inAutodesk Fusion.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{fig/bearing-seat-fusion.PNG}\hfill
+	\caption{hallo}
+	\label{fig:bearing-seat-fusion}
+\end{figure}
+
+
+
+
 \section{Software}
+
+\section{Controller}
+\begin{figure}
+	\begin{center}
+		\input{tikz/system_overview.tex}
+	\end{center}
+	\caption{}\label{fig:}
+\end{figure}
+
+\section{Controller}
+\begin{figure}
+	\begin{center}
+		\input{tikz/servo-system.tex}
+	\end{center}
+	\caption{}\label{fig:}
+\end{figure}
 
 
 
 \cleardoublepage
+
+

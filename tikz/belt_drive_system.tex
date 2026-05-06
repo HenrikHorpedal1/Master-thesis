@@ -1,0 +1,137 @@
+% Two-disc belt drive system with parallel spring-damper elements
+% Inspired by tikz.net/dynamics_pulley style (Izaak Neutelings)
+
+
+\begin{tikzpicture}[font=\small]
+
+	%% ──────────────────────────────────────────────────────────────
+	%%  GEOMETRY
+	%%  Left  disc centre : (0 , 0),  radius r1 = 1.0
+	%%  Right disc centre : (9 , 0),  radius r2 = 1.5
+	%%  Top  belt tangent : (0, 1.0)  → (9, 1.5),  slope = 0.5/9 ≈ 3.18°
+	%%  Bot  belt tangent : (0,-1.0)  → (9,-1.5)
+	%%  Perpendicular offset 0.38 → Δy ≈ 0.379 (vertical component)
+	%%  At x=2.5: belt y=±1.14  spring y=±1.52  damper y=±0.76
+	%%  At x=6.5: belt y=±1.36  spring y=±1.74  damper y=±0.98
+	%% ──────────────────────────────────────────────────────────────
+
+	%% ═══════════════════════════════════════════════════════════════
+	%%  LEFT DISC
+	%% ═══════════════════════════════════════════════════════════════
+	\draw[disc] (0,0) circle (1.0);
+
+	% Inertia label
+	\node[scale=0.88] at ( 0.00,-0.50) {$J_m$};
+
+	% Centre point + radius label
+	\filldraw (0,0) circle (0.07);
+	\node[scale=0.85, above right=-2pt] at (0.12,0.08) {$r_m$};
+
+	% Angular-velocity arc (left side, tip pointing downward)
+	\draw[force] (110:1.30) arc (110:250:1.30);
+	\node[left, scale=0.88] at (-1.30, 0.28) {$\theta_m(t)$};
+	\node[left, scale=0.88] at (-1.30,-0.28) {$\dot{\theta}_m(t)$};
+
+
+	%% ═══════════════════════════════════════════════════════════════
+	%%  RIGHT DISC
+	%% ═══════════════════════════════════════════════════════════════
+	\draw[disc] (9,0) circle (1.5);
+
+	% Inertia label
+	\node[scale=0.88] at (9.05,-0.40) {$J_L$};
+
+	% Centre point + radius label
+	\filldraw (9,0) circle (0.07);
+	\node[scale=0.85, above right=-2pt] at (9.12,0.08) {$r_L$};
+
+	% Angular-velocity arc (right side)
+	\draw[force] (9,0) + (-70:1.95) arc (-70:70:1.95);
+	\node[right, scale=0.88] at (10.95, 0.30) {$\theta_L(t)$};
+	\node[right, scale=0.88] at (10.95,-0.30) {$\dot{\theta}_L(t)$};
+
+
+	%% ═══════════════════════════════════════════════════════════════
+	%%  TOP BELT  — tangent: (0,1.0)→(9,1.5),  slope=0.5/9 ≈ 3.18°
+	%%  Spring c_R: (2.5,1.52)→(6.5,1.74)  [+0.379 above belt centre]
+	%%  Damper d_R: (2.5,0.76)→(6.5,0.98)  [−0.379 below belt centre]
+	%% ═══════════════════════════════════════════════════════════════
+
+	% Outer belt segments along the tangent line
+	\draw[belt] (0,1.0) -- (2.5,1.14);
+	\draw[belt] (6.5,1.36) -- (9,1.5);
+
+	% Vertical splits at block boundaries
+	\draw[belt] (2.5,1.14) -- (2.5,1.52);
+	\draw[belt] (2.5,1.14) -- (2.5,0.76);
+	\draw[belt] (6.5,1.36) -- (6.5,1.74);
+	\draw[belt] (6.5,1.36) -- (6.5,0.98);
+
+	% Spring (top branch) — tilted along belt direction, fewer zigzags
+	\draw[spring, decoration={zigzag, amplitude=4pt, segment length=14pt,
+			pre length=5pt, post length=5pt}] (2.5,1.52) -- (6.5,1.74);
+	\node[above, scale=0.9] at (4.5,1.72) {$c_R$};
+
+	% Damper (bottom branch)
+	\draw[damper] (2.5,0.76) -- (6.5,0.98);
+	\node[below, scale=0.9] at (4.5,0.50) {$d_R$};
+
+	% Force arrows — LEFT side
+	\draw[force] (0.10,1.006) -- (1.00,1.050)
+	node[above, midway, scale=0.85] {$F_{tight}$};
+	\draw[force] (1.00,1.050) -- (1.90,1.100)
+	node[above, midway, scale=0.85] {$F_v$};
+
+	% Force arrows — RIGHT side (pointing leftward toward block)
+	\draw[force] (8.90,1.494) -- (7.95,1.441)
+	node[above, midway, scale=0.85] {$F_{tight}$};
+	\draw[force] (7.95,1.441) -- (7.00,1.388)
+	node[above, midway, scale=0.85] {$F_v$};
+
+	% Δl_{tight} displacement arrow (above spring)
+	\draw[disp] (3.10,2.24) -- (5.90,2.24);
+	\node[above, scale=0.92] at (4.5,2.26) {$\Delta l_{tight}$};
+
+
+	%% ═══════════════════════════════════════════════════════════════
+	%%  BOTTOM BELT  — tangent: (0,-1.0)→(9,-1.5),  slope=−0.5/9
+	%%  Damper d_R: (2.5,−0.76)→(6.5,−0.98)  [+0.379 above belt centre]
+	%%  Spring c_R: (2.5,−1.52)→(6.5,−1.74)  [−0.379 below belt centre]
+	%% ═══════════════════════════════════════════════════════════════
+
+	% Outer belt segments along the tangent line
+	\draw[belt] (0,-1.0) -- (2.5,-1.14);
+	\draw[belt] (6.5,-1.36) -- (9,-1.5);
+
+	% Vertical splits at block boundaries
+	\draw[belt] (2.5,-1.14) -- (2.5,-0.76);
+	\draw[belt] (2.5,-1.14) -- (2.5,-1.52);
+	\draw[belt] (6.5,-1.36) -- (6.5,-0.98);
+	\draw[belt] (6.5,-1.36) -- (6.5,-1.74);
+
+	% Damper (top branch)
+	\draw[damper] (2.5,-0.76) -- (6.5,-0.98);
+	\node[above, scale=0.9] at (4.5,-0.50) {$d_R$};
+
+	% Spring (bottom branch) — tilted along belt direction, fewer zigzags
+	\draw[spring, decoration={zigzag, amplitude=4pt, segment length=14pt,
+			pre length=5pt, post length=5pt}] (2.5,-1.52) -- (6.5,-1.74);
+	\node[below, scale=0.9] at (4.5,-1.72) {$c_R$};
+
+	% Force arrows — LEFT side
+	\draw[force] (0.10,-1.006) -- (1.00,-1.050)
+	node[below, midway, scale=0.85] {$F_{slack}$};
+	\draw[force] (1.00,-1.050) -- (1.90,-1.100)
+	node[below, midway, scale=0.85] {$F_v$};
+
+	% Force arrows — RIGHT side
+	\draw[force] (8.90,-1.494) -- (7.95,-1.441)
+	node[below, midway, scale=0.85] {$F_{slack}$};
+	\draw[force] (7.95,-1.441) -- (7.00,-1.388)
+	node[below, midway, scale=0.85] {$F_v$};
+
+	% Δl_{slack} displacement arrow (below spring)
+	\draw[disp] (3.10,-2.24) -- (5.90,-2.24);
+	\node[below, scale=0.92] at (4.5,-2.26) {$\Delta l_{slack}$};
+
+\end{tikzpicture}
