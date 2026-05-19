@@ -8,12 +8,13 @@
 \cite{Leslie122Manual1971}
 \cite{Leslie1949RotatableTremulantSoundProducer}
 \cite{TheatreOrgansMysteryLeslie}
-\subsection{Explaiantion of the effect}
+\subsection{Explanation of the Effect}
 
+\cite{TheatreOrgansMysteryLeslie} Explains the effect of a Leslie speakers as three main effects happening at once. Because the sound radiated out from the rotating deflector is directional, the intensity of the sound source from a listeneres point will be wariying as the deflector rotates. This effect is called Amplitude Modulation (AM).
 
-\section{Previous work on this project, litt usikker hvor dette kan passe}
-referere til prosjektoppgaven forklare hva status var da det prosjektet var ferdig.
-Hva var nyttige erfaringer å ta med videre derifra osv.
+sett inn equation.
+
+However \cite{TheatreOrgansMysteryLeslie} as the soundsource is rotating, its relative velocity to the listener will change, causing Frequency Modulation FM as a reslult of the Doppler Effect. As the deflector rotates towards the listener the frequency contnet of the source will be rised and as it rotates away it will be lowered.
 
 
 %\section{Crossover networks}
@@ -34,65 +35,78 @@ where $S_0$ is the throat area, $x$ is the distance from the throat(noe med acus
 \end{equation}
 where $c \approx 343\,\text{m/s}$ is the speed of sound. Below $f_c$ the horn no longer supports propagating waves---acoustic pressure decays exponentially along the axis and radiation is strongly attenuated. Only frequencies above $f_c$ are efficiently radiated, so the choice of flare constant $m$ directly determines the lower bound of the horn's usable frequency range.
 
-\section{Brushless Direct Current Motor}
 
-The brushless DC (BLDC) motor is known under several different names in the literature. As noted by Hughes \& Drury \citep{hughes2013electric}, the industrial and academic communities have given multiple different names to essentially the same machine, including permanent magnet synchronous motor (PMSM), brushless permanent magnet synchronous motor, brushless AC motor, and permanent magnet servo motor. The term BLDC was originally introduced in the 1970s to describe motors intended as direct replacements for conventional DC motors \cite{hughes2013electric}. While minor differences exist between the variants, they all operate on the same basic principle: a three-phase motor with permanent magnets on the rotor and windings on the stator, where commutation is handled electronically rather than through brushes. (In this thesis, the term BLDC motor is used throughout, as it aligns with the terminology used in the motor datasheet and the moteus c1 controller documentation.)
+\section{Modelling a motor and load with elastic transmission}
+The following derivation is based of \citep{egeland2002modeling}.
 
-\subsection{Construction and gouverning effects (lag bedre overskrift)}
-- vis utsnitt av motoren
-- forklar de fysiske lovene som genererer dreiemoment.
-
-\subsection{Field Oriented Control}
-Introduser med problememene med pwm og sinus control,
-
-%\section{Cogging}
-
-\section{Phase-locked Loop}
-A phase-locked loop (PLL) is a circuit which has the purpose of synchronizing an output signal
-with a reference signal in both phase and frequency \citep[1]{best1993_pll}. In such a case the phase of the output
-is said that to locked onto the input signal, therefore giving it its name, phase-locked loop. The first PLLs were introduced in
-1932 by the french engineer Henri de Bellescize \cite{deBellescize1932ReceptionSynchrone}, but found its broad indistial application only after becomming available
-as an integrated circuit (IC) around 1965 \citep{best1993_pll}. A general PLL can be explained by considering the linear variant,
-the linear phase-locked loop (LPLL). Its main operating principles are shown in
-
-\begin{figure}[H]
+\begin{figure}[htbp]
 	\centering
-	\input{tikz/PLL-diagram.tex}
-	\caption{Block diagram of a linear phase-locked loop (LPLL).}
-	\label{fig:pll-diagram}
+	\input{tikz/motor_elastic_load.tex}
+	\caption{Two-mass model of a motor and load connected by an elastic transmission with stiffness $K$ and damping $D$.}
+	\label{fig:motor-elastic-load}
 \end{figure}
 
+The equations of motion of \autoref{fig:motor-elastic-load} is:
+\begin{align}
+	J_m \ddot{\theta}_m & = T_m - T_L \label{eq:motor-eom} \\
+	J_L \ddot{\theta}_L & = T_L \label{eq:load-eom}
+\end{align}
 
-\subsection{Software Phase-locked Loop}
-synchrous communication
+The elstic transmission is modelled as a spring with spring constant K and damper with damping coefficient D resulting in the torque.
 
+\begin{equation}
+	T_L = -K\theta_e - D\dot{\theta}_e
+	\label{eq:elastic-torque}
+\end{equation}
 
-\citep{Moore1973PLL} for circuit PLL for motors
+$\theta_e$ is the deflection in the transmission:
 
-\section{Cascade Control}
-- fortell om prinsipper for valg av båndbredde mellom loopsene osv
+\begin{equation}
+	\theta_e = \theta_L - \theta_m
+	\label{eq:elastic-deflection}
+\end{equation}
 
-\section{Controller Area Network}
-\subsection{Message Frame Architecture}
-Communication in CAN is done through
+by introducing the variable $\theta_r$ the derivation becomes more (ett elelr annet).
 
-\cite{voss2008can}
+\begin{equation}
+	\theta_r = \theta_m + \frac{J_L}{J_m}\theta_L
+	\label{eq:theta-r}
+\end{equation}
 
+The equations of motion expressed with $\theta_e$ and $\theta_r$ becomes then
 
+\begin{align}
+	\ddot{\theta}_e + \frac{D}{J_e}\dot{\theta}_e + \frac{K}{J_e}\theta_e & = -\frac{1}{J_m}T_m \label{eq:eom-theta-e} \\
+	\ddot{\theta}_r                                                       & = \frac{T_m}{J_m} \label{eq:eom-theta-r}
+\end{align}
 
+\begin{equation}
+	J_e = \frac{J_m J_L}{J}, \quad J = J_m + J_L
+	\label{eq:Je}
+\end{equation}
 
-\subsection{Physical Layer}
-\subsection{Bus Arbitration}
+The transferfunctions with motor torque as input and angle of the load as output then becomes
 
-\subsubsection{CAN-fd}
+\begin{align}
+	H_{\theta_m}(s) & : = \frac{\theta_m}{T_m}(s) = \frac{1}{Js^2}
+	\frac{1 + 2\zeta_a\frac{s}{\omega_a} + \left(\frac{s}{\omega_a}\right)^2}
+	{1 + 2\zeta_1\frac{s}{\omega_1} + \left(\frac{s}{\omega_1}\right)^2}
+	\label{eq:Htheta-m}                                            \\[6pt]
+	H_{\theta_L}(s) & : = \frac{\theta_L}{T_m}(s) = \frac{1}{Js^2}
+	\frac{1 + 2\zeta_1\frac{s}{\omega_1}}
+	{1 + 2\zeta_1\frac{s}{\omega_1} + \left(\frac{s}{\omega_1}\right)^2}
+	\label{eq:Htheta-L}
+\end{align}
 
+\begin{equation}
+	\zeta_1 = \frac{D}{2}\frac{1}{\sqrt{J_e K}}, \quad \omega_1 = \sqrt{\frac{K}{J_e}}
+	\label{eq:zeta1-omega1}
+\end{equation}
 
-\section{the MIDI Protocol}
-\subsection{Midi clock}
-\subsubsection{MIDI messages and byte format}
-\subsubsection{Examples}
-\cite{MMA1996}
-
+\begin{equation}
+	\zeta_a = \sqrt{\frac{J_m}{J}}\zeta_1, \quad \omega_a = \sqrt{\frac{J_m}{J}}\,\omega_1 < \omega_1
+	\label{eq:zeta-a-omega-a}
+\end{equation}
 
 
 \section{Modelling friction belt drive}
@@ -276,14 +290,159 @@ one obtains the differential equations of motion for the friction belt drive sys
 \end{equation}
 Equations \autoref{eq:motor-final} and \autoref{eq:load-final} describe the dynamic behaviour of the friction belt drive as a two-mass oscillator.
 
-\section{Motor and load with elastic transmission}
-\citep{egeland2002modeling} derives the equations of motion of a more general system.
+
+\section{Phase-locked Loop}
+A phase-locked loop (PLL) is a circuit which has the purpose of synchronizing an output signal
+with a reference signal in both phase and frequency \citep[1]{best1993_pll}. In such a case the phase of the output
+is said that to locked onto the input signal, therefore giving it its name, phase-locked loop. The first PLLs were introduced in
+1932 by the french engineer Henri de Bellescize \cite{deBellescize1932ReceptionSynchrone}, but found its broad indistial application only after becomming available
+as an integrated circuit (IC) around 1965 \citep{best1993_pll}. A general PLL can be explained by considering the linear variant,
+the linear phase-locked loop (LPLL). Its main operating principles are shown in
+
+\begin{figure}[H]
+	\centering
+	\input{tikz/PLL-diagram.tex}
+	\caption{Block diagram of a linear phase-locked loop (LPLL).}
+	\label{fig:pll-diagram}
+\end{figure}
+
+
+\subsection{Software Phase-locked Loop}
+synchrous communication
+
+
+\citep{Moore1973PLL} for circuit PLL for motors
+
+\section{Cascade Control}
+- fortell om prinsipper for valg av båndbredde mellom loopsene osv
+
+\section{Brushless Direct Current Motor}
+
+The brushless DC (BLDC) motor is known under several different names in the literature. As noted by Hughes \& Drury \citep{hughes2013electric}, the industrial and academic communities have given multiple different names to essentially the same machine, including permanent magnet synchronous motor (PMSM), brushless permanent magnet synchronous motor, brushless AC motor, and permanent magnet servo motor. The term BLDC was originally introduced in the 1970s to describe motors intended as direct replacements for conventional DC motors \cite{hughes2013electric}. While minor differences exist between the variants, they all operate on the same basic principle: a three-phase motor with permanent magnets on the rotor and windings on the stator, where commutation is handled electronically rather than through brushes. (In this thesis, the term BLDC motor is used throughout, as it aligns with the terminology used in the motor datasheet and the moteus c1 controller documentation.)
+
+\subsection{Construction and Governing Effects}
+- vis utsnitt av motoren
+- forklar de fysiske lovene som genererer dreiemoment.
+
+\subsection{Field Oriented Control}
+Introduser med problememene med pwm og sinus control,
+
+%\section{Cogging}
+\section{the MIDI Protocol}
+MIDI is short for Musical Instrument Digital Interface and is the industry standard for communication between musical equipment \citep{deoliveira2017understandingmidipainlesstutorial}. Instead of communicating the sound signal itself, MIDI transmits messages describing events for instance like which note was played and how intensely it was played, but MIDI can also transmit how knobs were changed which the receiver can interpret to change the sound. Midi has a lot of functionality but only the functionality used in this project will be explained in the following sections.
+
+\subsection{MIDI messages and byte format}
+MIDI messages consists consists of a status byte and then optinally up to two databytes. The status byte identifies the message type and which MIDI channel the message is for. The optional data bytes contains the parameters for that message \cite{MMA1996}.
+The status bytes and databytes are sepparated by their most significant bit, status bytes using 1 and data byte using 0.
+Channel Voice messages are used to send information about a musical preformance on a spesific channel and can command stuff like:
+Note On, Note Off, Control Change, Program Change and Pitch Bend. These messages consist of one status byte and two data byte.
+
+System Messages
+System Messages are intended for all receivers in the MIDI system. One variant is
+System Real Time messages. The Sytem Real Time messages are used to synchronize all clock-based equipment. They consist of only one status byte, and can be one of the following messages:
+
+\begin{itemize}
+	\item Timing Clock
+	\item Start
+	\item Continue
+	\item Stop
+	\item Active Sensing
+	\item System Reset
+\end{itemize}
+The Real Time messages can be sent at any time and can appear anywhere in the message stream including between a status byte and a system byte of channel voice message.
+
+The timing clock message are used to synchronize, sending the byte F8H 24 times per quarter note.
+
+
+\subsection{Examples}
+\cite{MMA1996}
+\cite{deoliveira2017understandingmidipainlesstutorial}
+
+
+\section{Controller Area Network (CAN)}
+\subsection{Message Frame Architecture}
+Communication in CAN is done through
+
+\cite{voss2008can}
 
 
 
 
-\section{Previous Work}
-This project was initially started
+\subsection{Physical Layer}
+\subsection{Bus Arbitration}
+
+\subsubsection{CAN-fd}
+
+
+\section{Previous Work on this Project}
+\label{sec:previous-work}
+
+The work leading into this master's thesis is documented in the project thesis \citep{horpedal2025projectthesis}.
+The project started as a hobby project in the spring of 2025.
+An IKEA Lunnarp side table was repurposed as an enclosure by cutting a hole for a 12-inch speaker and adding an 8\,mm threaded bar between the base and top plate to support the drum shaft.
+The bottom drum was designed in Fusion 360 based on reference pictures of a Leslie speaker drum and laser-cut from 6\,mm MDF, see \autoref{fig:bottom-drum}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.45\textwidth]{fig/background/leslie-drum-frontside.png}
+	\hfill
+	\includegraphics[width=0.45\textwidth]{fig/background/leslie-drum-backside.png}
+	\caption{Bottom drum viewed from two different orientations.}
+	\label{fig:bottom-drum}
+\end{figure}
+
+A BLDC motor (see \autoref{app:motor}), a cheap RioRand motor controller purchased from Amazon with limited documentation, and a 24\,V PSU were sourced and tested.
+A polyurethane belt and a 3D-printed PLA drum-side pulley formed a preliminary drive belt system.
+A footswitch was also built to allow foot control of the Leslie speed modes.
+Its circuit uses charlieplexing to drive three LEDs and read two switches over just three GPIO pins, inspired by \citep{edn_3pins_3leds_3buttons}, see \autoref{fig:footswitch-circuit}, \autoref{tab:charlie-gpio-states}, and \autoref{fig:footswitch-hardware}.
+
+\begin{figure}[H]
+	\centering
+	\includesvg[width=0.6\textwidth]{fig/background/footswitch-circuit}
+	\caption{Footswitch circuit.}
+	\label{fig:footswitch-circuit}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\small
+	\begin{tabular}{lccc}
+		\toprule
+		Operation     & Pin A      & Pin B      & Pin C      \\
+		\midrule
+		Light LED A   & HIGH (out) & Hi-Z (in)  & LOW (out)  \\
+		Light LED B1  & LOW (out)  & HIGH (out) & Hi-Z (in)  \\
+		Light LED B2  & Hi-Z (in)  & LOW (out)  & HIGH (out) \\
+		Read switch A & IN+PULLUP  & LOW (out)  & Hi-Z (in)  \\
+		Read switch B & Hi-Z (in)  & IN+PULLUP  & LOW (out)  \\
+		\bottomrule
+	\end{tabular}
+	\caption{GPIO configuration of pins A, B, and C for LED driving and switch reading.}
+	\label{tab:charlie-gpio-states}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{fig/background/footswitch-hardware.png}
+	\caption{Previously implemented footswitch.}
+	\label{fig:footswitch-hardware}
+\end{figure}
+
+\label{sec:foot}
+Building on this foundation, the project thesis extended the system.
+A spring-loaded belt tensioner and a 3D-printed motor shaft support were added to improve drive belt stability.
+Because the RioRand controller offered no position feedback and belt slip was observed during rapid deceleration, a custom infrared quadrature encoder was designed and mounted directly on the drum to measure angular position and velocity independently of the motor, providing 32 counts per revolution.
+An Arduino Nano ESP32 running FreeRTOS served as the main controller, communicating with the Leslie over USB-MIDI.
+The software implemented cascaded velocity and position control, discrete (\textsc{Chorale}/\textsc{Stop}/\textsc{Tremolo}) and continuous MIDI modes, trajectory generation with configurable rise and fall times, and a homing procedure to return the drum to a repeatable angle when stopped.
+The Leslie effect was demonstrated and audio recordings confirmed it was clearly perceptible, particularly at high rotational speeds.
+
+Several limitations remained at the end of the project thesis.
+The RioRand motor controller acted as a black box with unknown internal control laws and no diagnostics, and ultimately failed during the final recording session.
+The 32-count encoder resolution (11.25° per count) was too coarse for precise position control and introduced quantization noise in velocity estimation.
+Mechanical noise from the belt drive was audible at higher speeds, and no horn assembly existed for high-frequency content.
+
 \cleardoublepage
+
+
 
 

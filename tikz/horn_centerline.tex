@@ -1,0 +1,48 @@
+\begin{tikzpicture}[font=\small, >=stealth, line cap=round]
+
+  % L1 = 1.5, R = 2, arc 180°→110° clockwise, L2 = 3.5
+  % O = (2, 1.5),  C = O + 2·(cos110°, sin110°) ≈ (1.316, 3.380)
+  % D = C + 3.5·(cos20°, sin20°) ≈ (4.606, 4.577)
+
+  \coordinate (A) at (0,     0    );
+  \coordinate (B) at (0,     1.5  );
+  \coordinate (O) at (2,     1.5  );
+  \coordinate (C) at (1.316, 3.380);
+  \coordinate (D) at (4.606, 4.577);
+
+  % centreline
+  \draw[very thick] (A) -- (B);
+  \draw[very thick] (B) arc[start angle=180, end angle=110, radius=2];
+  \draw[very thick] (C) -- (D);
+
+  % travel arrows
+  \draw[->, thick, gray!60] (0, 0.50) -- (0, 1.00);
+  \draw[->, thick, gray!60] (2.726, 3.893) -- (3.196, 4.064);
+
+  % arc centre + R label (135°)
+  \filldraw[gray!60] (O) circle (2pt);
+  \draw[gray, dashed] (O) -- (0.586, 2.914) node[midway, left, black] {$R$};
+
+  % L1 dimension
+  \draw[gray, dotted] (A) -- (-0.70, 0  );
+  \draw[gray, dotted] (B) -- (-0.70, 1.5);
+  \draw[<->, gray]    (-0.60, 0) -- (-0.60, 1.5)
+      node[midway, left, black] {$L_1$};
+
+  % L2 dimension (perp offset 0.5 in direction (−sin20°, cos20°))
+  \draw[gray, dotted] (C) -- (1.145, 3.850);
+  \draw[gray, dotted] (D) -- (4.435, 5.047);
+  \draw[<->, gray]    (1.145, 3.850) -- (4.435, 5.047)
+      node[midway, above left, black] {$L_2$};
+
+  % exit angle α
+  \draw[gray, dashed] (C) -- (3.0, 3.380);
+  \draw[->, gray] (2.166, 3.380)
+      arc[start angle=0, end angle=20, radius=0.85]
+      node[pos=0.5, right, black] {$\alpha$};
+
+  % labels
+  \node[below]       at (A) {Throat};
+  \node[above right] at (D) {Mouth};
+
+\end{tikzpicture}

@@ -2,75 +2,206 @@
 
 \chapter{Implementation}
 \section{Mechanical}
+\subsection{Cabinet}
+The CAD files for the cabinet was given to the institue's workshop and the mdf plates were cut out with a CNC milling machine.
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{fig/implementation/cut-out-mdf.png}
+	\end{center}
+	\caption{bilde skal byttes}\label{fig:cut-out-mdf}
+\end{figure}
+
+
+\section{Motors and motor brackets}
+
+"If using 3D printed mounts, care should be taken to ensure the mount does not warp. PLA and other low temperature filaments will warp under load at room temperature, and will do so even more when exposed to thermal heating like from a motor controller. It is recommended to use PETG, PC, or a filament designed to not warp at the operating temperature you intend."
+\citep{mjbots_moteus_mechanical_setup}
 
 The brackets for the Moteus boards were 3D-printed in PETG in two parts and assembled to the motors using M2.5 screws,
 see \autoref{fig:bracket-printed}.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.4\textwidth]{fig/motor-bracket-back}\hfill
-  \includegraphics[width=0.4\textwidth]{fig/motor-bracket-front}\hfill
-  \caption{}
-  \label{fig:bracket-printed}
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/motor-bracket-back}\hfill
+	\includegraphics[width=0.4\textwidth]{fig/motor-bracket-front}\hfill
+	\caption{}
+	\label{fig:bracket-printed}
 \end{figure}
 
 The bearing seat was 3D-printed in PETG and the bearing was pressed into the seat, see \autoref{fig:bearing-seat-printed}.
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.4\textwidth]{fig/bearing-seat-back}\hfill
-  \includegraphics[width=0.4\textwidth]{fig/bearing-seat-front}\hfill
-  \caption{}
-  \label{fig:bearing-seat-printed}
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/bearing-seat-back}\hfill
+	\includegraphics[width=0.4\textwidth]{fig/bearing-seat-front}\hfill
+	\caption{}
+	\label{fig:bearing-seat-printed}
 \end{figure}
 
-A diametrically magentized magnet was glued to the back the rotor using a drop of super glue, see 
+A diametrically magnetized magnet was glued to the back the rotor using a drop of super glue, see
 \autoref{fig:glued-magnet}
 
+
+
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{fig/implementation/glued-magnet.JPG}\hfill
-  \caption{Motor with magned glued to the back of the rotor.}
-  \label{fig:glued-magnet}
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/implementation/glued-magnet.JPG}\hfill
+	\caption{Motor with magned glued to the back of the rotor.}
+	\label{fig:glued-magnet}
 \end{figure}
 
+\subsection{Drive Belt}
+The drive belts for the upper and lower rotors were measured to the cut length calculated in section ...
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{fig/implementation/cutting-belt.png}
+	\end{center}
+	\caption{}\label{fig:cutting-belt}
+\end{figure}
 
-\section{Hardware}
+To align the ends of the belt when welding them together a small mounting jig was 3D-modeled and 3D printed. A metal rod was heated with a blow torch, the ends of the belts were melted with the rod and then welded together with the jig, see \autoref{fig:welded-belts}
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.48\textwidth]{fig/implementation/welded-belts.png}\hfill
+		\includegraphics[width=0.48\textwidth]{fig/implementation/welding-jig.png}
+	\end{center}
+	\caption{}\label{fig:welded-belts}
+\end{figure}
+The excess plastic were cut off.
+
+\clearpage
+\section{Electronics}
+\subsection{Power}
 Power cables for the Moteus motor divers were constructed by soldering a XT30 connector on one end, following the instructions from Moteus
 (link).
-A fuse holder was joined to the cable with a butt splice and the other end of the cable was termintated with 
+
+A fuse holder was joined to the 16 AWG wire with a butt splice and the other end of the cable was termintated with
 bootlace ferrules for secure connection to the terminals of the Power supply unit. The cable is shown in \autoref{fig:powercable}.
+
+To facilitate for testing the system more safely a box was made to house the powersupply unit, to not have exposed mains voltage on the terminals of the PSU.
+
+Sett inn bilder av boksen med strømforsyning inni.
 
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{fig/implementation/power-cord.JPG}\hfill
-  \caption{}
-  \label{fig:powercable}
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/implementation/power-cord.JPG}\hfill
+	\caption{}
+	\label{fig:powercable}
 \end{figure}
 
 
 Phase wires were soldered to the Moteus boards, see \autoref{fig:soldered-moteus}
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{fig/implementation/phase-wire-soldered.JPG}\hfill
-  \caption{}
-  \label{fig:soldered-moteus}
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/implementation/phase-wire-soldered.JPG}\hfill
+	\caption{}
+	\label{fig:soldered-moteus}
 \end{figure}
 
-The moteus boards could then be assebled on the back of the motors.
+The moteus boards could then be assembled on the back of the motors.
 
 
 \begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{fig/implementation/mounted-moteus.JPG}\hfill
-  \caption{}
-  \label{fig:mounted-moteus}
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/implementation/mounted-moteus.JPG}\hfill
+	\caption{}
+	\label{fig:mounted-moteus}
 \end{figure}
 
+\subsection{Can Bus}
+Originally the Can bus was supposed to use small PCBs to for the CAN Bus from the main trunk, however since the funding was starting to run out the junctions were made by directly soldering the cables to implement the diagram from section...
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{fig/implementation/lodda-can-bus.png}
+	\end{center}
+	\caption{}\label{fig:can-bus-wiring}
+\end{figure}
+
+
+
+\subsection{Drum}
+
+The pieces to make up the drum was lasercut out of 6mm mdf,
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{fig/implementation/lasercut-drum-pieces.png}\hfill
+	\includegraphics[width=0.4\textwidth]{fig/implementation/drum-stacked-pieces.png}\hfill
+	\caption{}
+	\label{fig:lasercut-drum-pieces}
+\end{figure}
+
+The scoop, the curved surface in (referer til design) was made by two sheets of bent plywood. this was done the following way:
+The two pieces of plywood were lasercut. Then a jig for bending was designed and implemented (se appendix). Then the two plywood pieces were soaked in warm water for 30 minutes, and then clamped in the jig for 24 hours, then the pieces were glued together and clamped in the jig for another 24 hours.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\textwidth]{fig/implementation/drum-dry-fit-front.png}\hfill
+	\includegraphics[width=0.3\textwidth]{fig/implementation/drum-dry-fit-upside-down.png}\hfill
+	\includegraphics[width=0.3\textwidth]{fig/implementation/drum-dry-fit-backside.png}\hfill
+	\caption{}
+	\label{fig:drum-dry-fit}
+\end{figure}
+
+
+
+\begin{table}[H]
+	\caption{Measured weight}\label{tab:measure-weight}
+	\begin{center}
+		\begin{tabular}[c]{l|l}
+			\hline
+			\multicolumn{1}{c|}{\textbf{Piece}} &
+			\multicolumn{1}{c}{\textbf{Measured [g]}}   \\
+			\hline
+			top disc                            & 259.4 \\
+			bottom disc                         & 235.2 \\
+			left wall                           & 204.4 \\
+			right wall                          & 203.4 \\
+			scoop                               & 351.6 \\
+			scoop stabilizer                    & 44.0  \\
+			total weight, summed                & xxxx  \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+Entering these measured masses into the fusion add-in, yielded the following correction masses
+\begin{table}
+	\caption{Calculated correction masses}\label{tab:correction-masses}
+	\begin{center}
+		\begin{tabular}[c]{l|l}
+			\hline
+			\multicolumn{1}{c|}{\textbf{correction mass index}} &
+			\multicolumn{1}{c}{\textbf{calculated mass}}                 \\
+			\hline
+			lower front                                         & 17.934 \\
+			lower left                                          & 29.295 \\
+			lower right                                         & 29.732 \\
+			upper front                                         & 29.759 \\
+			upper left                                          & 29.034 \\
+			upper right                                         & 29.790 \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+
+
+
+\clearpage
 \section{Software}
-
-
+Only the modules that has been developed or significantly changed since the start of the thesis will be presented.
+\subsection{Main}
+\subsection{Clock-sync}
+\subsection{Controller}
+\subsection{Midi-listener}
+\subsection{Mode-selector}
+\subsection{Moteus-config}
+\subsection{Input-handler}
 
 \cleardoublepage
+
+

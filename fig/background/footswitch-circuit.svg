@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 480 400" style="enable-background:new 0 0 480 400;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:square;}
+	.st1{fill-opacity:0;stroke:#000000;stroke-width:2;}
+	.st2{fill-opacity:0;stroke:#000000;stroke-width:2;stroke-linecap:square;}
+	.st3{font-family:'ArialMT';}
+	.st4{font-size:11px;}
+	.st5{font-size:12px;}
+	.st6{stroke:#000000;stroke-width:2;}
+</style>
+<line class="st0" x1="440" y1="160" x2="440" y2="260"/>
+<line class="st0" x1="240" y1="160" x2="240" y2="260"/>
+<line class="st0" x1="40" y1="160" x2="40" y2="260"/>
+<line class="st0" x1="240" y1="260" x2="256" y2="260"/>
+<line class="st0" x1="284" y1="260" x2="300" y2="260"/>
+<ellipse class="st1" cx="259" cy="260" rx="3" ry="3"/>
+<ellipse class="st1" cx="281" cy="260" rx="3" ry="3"/>
+<line class="st0" x1="262" y1="258" x2="279" y2="252"/>
+<line class="st0" x1="40" y1="260" x2="56" y2="260"/>
+<line class="st0" x1="84" y1="260" x2="100" y2="260"/>
+<ellipse class="st1" cx="59" cy="260" rx="3" ry="3"/>
+<ellipse class="st1" cx="81" cy="260" rx="3" ry="3"/>
+<line class="st0" x1="62" y1="258" x2="79" y2="252"/>
+<line class="st0" x1="440" y1="60" x2="440" y2="160"/>
+<line class="st0" x1="40" y1="60" x2="40" y2="160"/>
+<line class="st0" x1="180" y1="260" x2="240" y2="260"/>
+<path class="st2" d="M217,252v16 M217,260l-15,8v-16L217,260"/>
+<line class="st0" x1="380" y1="260" x2="440" y2="260"/>
+<path class="st2" d="M417,252v16 M417,260l-15,8v-16L417,260"/>
+<line class="st0" x1="440" y1="160" x2="340" y2="160"/>
+<path class="st2" d="M383,152v16 M383,160l15,8v-16L383,160"/>
+<path class="st2" d="M387,149l-8-8 M378,140l4,2l-2,2L378,140l4,2"/>
+<path class="st2" d="M381,156l-8-8 M372,147l4,2l-2,2L372,147l4,2"/>
+<line class="st0" x1="240" y1="160" x2="140" y2="160"/>
+<path class="st2" d="M183,152v16 M183,160l15,8v-16L183,160"/>
+<path class="st2" d="M187,149l-8-8 M178,140l4,2l-2,2L178,140l4,2"/>
+<path class="st2" d="M181,156l-8-8 M172,147l4,2l-2,2L172,147l4,2"/>
+<line class="st0" x1="100" y1="260" x2="120" y2="260"/>
+<line class="st0" x1="160" y1="260" x2="180" y2="260"/>
+<rect x="120" y="252" class="st1" width="40" height="16"/>
+<text transform="matrix(1 0 0 1 128.4387 246)" class="st3 st4">1 kΩ</text>
+<line class="st0" x1="300" y1="260" x2="320" y2="260"/>
+<line class="st0" x1="360" y1="260" x2="380" y2="260"/>
+<rect x="320" y="252" class="st1" width="40" height="16"/>
+<text transform="matrix(1 0 0 1 328.4387 246)" class="st3 st4">1 kΩ</text>
+<line class="st0" x1="240" y1="160" x2="270" y2="160"/>
+<line class="st0" x1="310" y1="160" x2="340" y2="160"/>
+<rect x="270" y="152" class="st1" width="40" height="16"/>
+<text transform="matrix(1 0 0 1 275.071 146)" class="st3 st4">220 Ω</text>
+<line class="st0" x1="40" y1="160" x2="70" y2="160"/>
+<line class="st0" x1="110" y1="160" x2="140" y2="160"/>
+<rect x="70" y="152" class="st1" width="40" height="16"/>
+<text transform="matrix(1 0 0 1 75.071 146)" class="st3 st4">220 Ω</text>
+<line class="st0" x1="40" y1="60" x2="120" y2="60"/>
+<line class="st0" x1="160" y1="60" x2="240" y2="60"/>
+<rect x="120" y="52" class="st1" width="40" height="16"/>
+<text transform="matrix(1 0 0 1 125.071 46)" class="st3 st4">220 Ω</text>
+<line class="st0" x1="240" y1="60" x2="440" y2="60"/>
+<path class="st2" d="M347,52v16 M347,60l-15,8V52L347,60"/>
+<path class="st2" d="M343,49l8-8 M352,40l-4,2l2,2L352,40l-4,2"/>
+<path class="st2" d="M349,56l8-8 M358,47l-4,2l2,2L358,47l-4,2"/>
+<text transform="matrix(1 0 0 1 423.998 375.2979)" class="st3 st5">PIN C</text>
+<line class="st0" x1="440" y1="260" x2="440" y2="357"/>
+<ellipse class="st1" cx="440" cy="360" rx="3" ry="3"/>
+<text transform="matrix(1 0 0 1 224.3291 375.2979)" class="st3 st5">PIN B</text>
+<line class="st0" x1="240" y1="260" x2="240" y2="357"/>
+<ellipse class="st1" cx="240" cy="360" rx="3" ry="3"/>
+<text transform="matrix(1 0 0 1 24.6602 375.2979)" class="st3 st5">PIN A</text>
+<line class="st0" x1="40" y1="260" x2="40" y2="357"/>
+<ellipse class="st1" cx="40" cy="360" rx="3" ry="3"/>
+<ellipse class="st6" cx="440" cy="160" rx="2" ry="2"/>
+<ellipse class="st6" cx="440" cy="260" rx="2" ry="2"/>
+<ellipse class="st6" cx="240" cy="160" rx="2" ry="2"/>
+<ellipse class="st6" cx="240" cy="260" rx="2" ry="2"/>
+<ellipse class="st6" cx="40" cy="160" rx="2" ry="2"/>
+<ellipse class="st6" cx="40" cy="260" rx="2" ry="2"/>
+<text transform="matrix(1 0 0 1 365.92 133.6368)" class="st3 st5">LED B2</text>
+<text transform="matrix(1 0 0 1 164.8844 133.6367)" class="st3 st5">LED B1</text>
+<text transform="matrix(1 0 0 1 252.7588 237.9258)" class="st3 st5">Switch B</text>
+<text transform="matrix(1 0 0 1 50.8972 240.4077)" class="st3 st5">Swith A</text>
+<text transform="matrix(1 0 0 1 327.4373 35.3867)" class="st3 st5">LED A</text>
+<text transform="matrix(1 0 0 1 401.9998 243.9099)" class="st3 st5">D2</text>
+<text transform="matrix(1 0 0 1 201.9998 243.9099)" class="st3 st5">D1</text>
+<text transform="matrix(1 0 0 1 133.2161 234.1807)" class="st3 st5">R1</text>
+<text transform="matrix(1 0 0 1 334.1405 235.2816)" class="st3 st5">R1</text>
+<text transform="matrix(1 0 0 1 132.5259 35.3862)" class="st3 st5">R2</text>
+<text transform="matrix(1 0 0 1 284.0002 133.6367)" class="st3 st5">R2</text>
+<text transform="matrix(1 0 0 1 84.0002 133.6362)" class="st3 st5">R2</text>
+</svg>
