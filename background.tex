@@ -2,19 +2,45 @@
 
 \chapter{Theory}
 
-\section{Technical explanation of a Leslie speaker}
+\section{Technical explanation of a typical Leslie speaker}
+Although many models have been released upon the years, the Leslie 122 may be the most famous and share the same principle of operation as several other models \citep{TheatreOrgansMysteryLeslie}.
+The basic concept of a Leslie speaker is illustrated in \autoref{fig:leslie-inner-workings}.
+
+The sound signal from an organ or other instrument enters the Leslie and is amplified by a 40-watt amplifier. Then the signal is split with a 12dB per octave 800 Hz, 16 ohm crossover. The treble frequencies are feed to a \nicefrac{3}{4}$''$ Jensen compression driver while the bass frequencies are fed to a 15 inch woofer, both 16 ohm.
+
+\begin{figure}[h]
+	\centering
+	\input{fig/background/leslie-inner-workings.tikz}
+	\caption{Basic concept of a Leslie speaker. Redrawn from \citet{Leslie122Manual1971}.}
+	\label{fig:leslie-inner-workings}
+\end{figure}
+
+The cabinet usually has three compartments. The upper one houses the treble rotor, the middle houses the speakers and crossover while the lower compartment houses the bass rotor and the amplifier.
+
+Both speakers them self are stationary, but plays into rotating deflectors (check if both are called reflectors). The compression driver fires up into what starts as vertical tube and flares out making a horn. Although there appear to be two horns, only one is functional, the other is plugged and serves to balance the horn while it spins. A diffuser is located at the end of the horn which will be furthered discussed in section x.
+
+The woofer fires downward into a rotating drum. The drum has straight walls and a scoop that starts vertically and ends horizontally.
+
+Both rotors are driven with belts and pulleys by two AC induction motors, one for fast and one for slow.
+(finn kilde på hastigheter og introduser chorale and tremolo)
+
 
 \cite{lester_story_leslie_2002}
 \cite{Leslie122Manual1971}
 \cite{Leslie1949RotatableTremulantSoundProducer}
 \cite{TheatreOrgansMysteryLeslie}
+
 \subsection{Explanation of the Effect}
+\cite{kronland2008realtime}
 
-\cite{TheatreOrgansMysteryLeslie} Explains the effect of a Leslie speakers as three main effects happening at once. Because the sound radiated out from the rotating deflector is directional, the intensity of the sound source from a listeneres point will be wariying as the deflector rotates. This effect is called Amplitude Modulation (AM).
 
-sett inn equation.
+\cite{TheatreOrgansMysteryLeslie} Explains the effect of a Leslie speakers as three main effects happening at once. Because the sound radiated out from the rotating deflector is directional, the intensity of the sound source from a listener's point will be varying as the deflector rotates. This effect is called Amplitude Modulation (AM).
 
-However \cite{TheatreOrgansMysteryLeslie} as the soundsource is rotating, its relative velocity to the listener will change, causing Frequency Modulation FM as a reslult of the Doppler Effect. As the deflector rotates towards the listener the frequency contnet of the source will be rised and as it rotates away it will be lowered.
+\textbf{TODO: sett inn equation.}
+
+However \cite{TheatreOrgansMysteryLeslie} as the sound source is rotating, its relative velocity to the listener will change, causing Frequency Modulation FM as a result of the Doppler Effect. As the deflector rotates towards the listener the frequency content of the source will be raised and as it rotates away it will be lowered.
+
+The third effect is
 
 
 %\section{Crossover networks}
@@ -23,12 +49,12 @@ However \cite{TheatreOrgansMysteryLeslie} as the soundsource is rotating, its re
 \section{Horn Theory}
 An acoustic horn is a waveguide that couples a driver to the surrounding air. The primary function of the horn is acoustic impedance transformation: the compression driver at the throat operates into a high acoustic impedance, while free air at the mouth presents a low impedance. By gradually expanding the cross-sectional area, the horn acts as an acoustic transformer, increasing radiation efficiency significantly compared to a bare driver \citep{Kolbrek2008HornTheoryPart1}.
 
-The most common horn profile is the exponential horn (verifiser med kilde), in which the cross-sectional area $S$ increases exponentially along the axis:
+The most common horn profile is the exponential horn \textbf{TODO: verifiser med kilde}, in which the cross-sectional area $S$ increases exponentially along the axis:
 \begin{equation}
 	S(x) = S_0\,e^{mx}
 	\label{eq:horn-area}
 \end{equation}
-where $S_0$ is the throat area, $x$ is the distance from the throat(noe med acustic centerline), and $m$ is the flare constant that controls the rate of expansion. A key property of the exponential horn is its cutoff frequency \citep{Kolbrek2008HornTheoryPart1}:
+where $S_0$ is the throat area, $x$ is the distance from the throat \textbf{TODO: noe med acoustic centerline}, and $m$ is the flare constant that controls the rate of expansion. A key property of the exponential horn is its cutoff frequency \citep{Kolbrek2008HornTheoryPart1}:
 \begin{equation}
 	f_c = \frac{mc}{4\pi}
 	\label{eq:horn-cutoff}
@@ -37,7 +63,7 @@ where $c \approx 343\,\text{m/s}$ is the speed of sound. Below $f_c$ the horn no
 
 
 \section{Modelling a motor and load with elastic transmission}
-The following derivation is based of \citep{egeland2002modeling}.
+The following derivation is based on \citep{egeland2002modeling}.
 
 \begin{figure}[htbp]
 	\centering
@@ -52,7 +78,7 @@ The equations of motion of \autoref{fig:motor-elastic-load} is:
 	J_L \ddot{\theta}_L & = T_L \label{eq:load-eom}
 \end{align}
 
-The elstic transmission is modelled as a spring with spring constant K and damper with damping coefficient D resulting in the torque.
+The elastic transmission is modelled as a spring with spring constant K and damper with damping coefficient D resulting in the torque.
 
 \begin{equation}
 	T_L = -K\theta_e - D\dot{\theta}_e
@@ -66,7 +92,7 @@ $\theta_e$ is the deflection in the transmission:
 	\label{eq:elastic-deflection}
 \end{equation}
 
-by introducing the variable $\theta_r$ the derivation becomes more (ett elelr annet).
+by introducing the variable $\theta_r$ the derivation becomes more \textbf{TODO: ett eller annet}.
 
 \begin{equation}
 	\theta_r = \theta_m + \frac{J_L}{J_m}\theta_L
@@ -85,7 +111,7 @@ The equations of motion expressed with $\theta_e$ and $\theta_r$ becomes then
 	\label{eq:Je}
 \end{equation}
 
-The transferfunctions with motor torque as input and angle of the load as output then becomes
+The transfer functions with motor torque as input and angle of the load as output then become
 
 \begin{align}
 	H_{\theta_m}(s) & : = \frac{\theta_m}{T_m}(s) = \frac{1}{Js^2}
@@ -113,7 +139,7 @@ The transferfunctions with motor torque as input and angle of the load as output
 The derivation of the equations of motion in this section is based on section 4.6.5, Belt Drives in \cite{isermann2005mechatronic}. Note that there is a change in the notation.
 
 The belt drive of a typical Leslie speaker is a friction belt drive.
-Friction belt drives follow the laws of rope friction. Different examples of friction belt drives include flat belt, round belt and V-belt transmission (TODO: find source confirming V-belt is also a friction belt drive). When correctly designed, these power transmission systems deliver low slip and an almost constant transmission ratio. (TODO: finne kilde om mekanisk støy og legge inn motsetning mot synkronbelte)
+Friction belt drives follow the laws of rope friction. Different examples of friction belt drives include flat belt, round belt and V-belt transmission \textbf{TODO: find source confirming V-belt is also a friction belt drive}. When correctly designed, these power transmission systems deliver low slip and an almost constant transmission ratio. \textbf{TODO: finne kilde om mekanisk støy og legge inn motsetning mot synkronbelte}
 
 In order to develop the equations of motion for the friction belt a set of simplifying assumptions about the system are made:
 \begin{itemize}
@@ -125,7 +151,7 @@ In order to develop the equations of motion for the friction belt a set of simpl
 	\item Extension slip only occurs.
 \end{itemize}
 
-forklar extension slip (også kalt creep).
+\textbf{TODO: forklar extension slip (også kalt creep).}
 
 The system can be represented with \autoref{fig:belt_drive}.
 
@@ -144,18 +170,18 @@ The symbols in \autoref{fig:belt_drive} are explained in \autoref{tab:symbol-exp
 		\begin{tabular}[c]{l|l}
 			\hline
 			\multicolumn{1}{c|}{\textbf{Symbol}}    &
-			\multicolumn{1}{c}{\textbf{Explanation}}                                                                        \\
+			\multicolumn{1}{c}{\textbf{Explanation}}                                                                                     \\
 			\hline
-			$\theta_m(t),\theta_L(t)$               & angular position of motor and load                                    \\
-			$\dot{\theta}_m(t),\dot{\theta}_L(t)$   & angular velocity of motor and load                                    \\
-			$\ddot{\theta}_m(t),\ddot{\theta}_L(t)$ & angular acceleration of motor and load                                \\
-			$J_m, J_L$                              & moment of inertia of motor and load (finn ut om effective eller ikke) \\
-			$r_m, r_L$                              & effective radius of motor and load pulley.                            \\
-			$F_v$                                   & Pretensioning force.                                                  \\
-			$F_{tight}, F_{slack}$                  & force of belt, tight and slack side.                                  \\
-			$c_R$                                   & belt spring stiffness factor                                          \\
-			$d_R$                                   & belt damping coefficient                                              \\
-			$\Delta l_{tight}, \Delta l_{slack} $   & length variation, tight and slack side.                               \\
+			$\theta_m(t),\theta_L(t)$               & angular position of motor and load                                                 \\
+			$\dot{\theta}_m(t),\dot{\theta}_L(t)$   & angular velocity of motor and load                                                 \\
+			$\ddot{\theta}_m(t),\ddot{\theta}_L(t)$ & angular acceleration of motor and load                                             \\
+			$J_m, J_L$                              & moment of inertia of motor and load \textbf{TODO: finn ut om effective eller ikke} \\
+			$r_m, r_L$                              & effective radius of motor and load pulley.                                         \\
+			$F_v$                                   & Pretensioning force.                                                               \\
+			$F_{tight}, F_{slack}$                  & force of belt, tight and slack side.                                               \\
+			$c_R$                                   & belt spring stiffness factor                                                       \\
+			$d_R$                                   & belt damping coefficient                                                           \\
+			$\Delta l_{tight}, \Delta l_{slack} $   & length variation, tight and slack side.                                            \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -167,14 +193,14 @@ The spring stiffness factor is assumed to be estimated with
 	\label{eq:spring_stifness}
 \end{equation}
 where $EA$ is the spring stiffness factor and $l_R$ is the belt length on the tight or slack side.
-(finn ut om hvordan estimere EA)
+\textbf{TODO: finn ut om hvordan estimere EA}
 
 The belt damping coefficient $d_R$ is given by
 \begin{equation}
 	d_R = \frac{\Psi c_R}{2\pi\dot{\theta}_{L,0}}
 	\label{eq:damping_coeff}
 \end{equation}
-where $\dot{\theta}_{L,0}$ is the angular velocity of the operating point, and $\Psi$ is the relative damping of the belt which can be experimentally determined (finn ut hvordan).
+where $\dot{\theta}_{L,0}$ is the angular velocity of the operating point, and $\Psi$ is the relative damping of the belt which can be experimentally determined \textbf{TODO: finn ut hvordan}.
 
 With these assumptions in place we get the following equation of motion for the motor side using a moment balance
 \begin{equation}
@@ -295,7 +321,7 @@ Equations \autoref{eq:motor-final} and \autoref{eq:load-final} describe the dyna
 A phase-locked loop (PLL) is a circuit which has the purpose of synchronizing an output signal
 with a reference signal in both phase and frequency \citep[1]{best1993_pll}. In such a case the phase of the output
 is said that to locked onto the input signal, therefore giving it its name, phase-locked loop. The first PLLs were introduced in
-1932 by the french engineer Henri de Bellescize \cite{deBellescize1932ReceptionSynchrone}, but found its broad indistial application only after becomming available
+1932 by the French engineer Henri de Bellescize \cite{deBellescize1932ReceptionSynchrone}, but found its broad industrial application only after becoming available
 as an integrated circuit (IC) around 1965 \citep{best1993_pll}. A general PLL can be explained by considering the linear variant,
 the linear phase-locked loop (LPLL). Its main operating principles are shown in
 
@@ -308,38 +334,37 @@ the linear phase-locked loop (LPLL). Its main operating principles are shown in
 
 
 \subsection{Software Phase-locked Loop}
-synchrous communication
+\textbf{TODO: synchrous communication}
 
-
-\citep{Moore1973PLL} for circuit PLL for motors
+\textbf{TODO: \citep{Moore1973PLL} for circuit PLL for motors}
 
 \section{Cascade Control}
-- fortell om prinsipper for valg av båndbredde mellom loopsene osv
+\textbf{TODO: fortell om prinsipper for valg av båndbredde mellom loopsene osv}
 
 \section{Brushless Direct Current Motor}
 
 The brushless DC (BLDC) motor is known under several different names in the literature. As noted by Hughes \& Drury \citep{hughes2013electric}, the industrial and academic communities have given multiple different names to essentially the same machine, including permanent magnet synchronous motor (PMSM), brushless permanent magnet synchronous motor, brushless AC motor, and permanent magnet servo motor. The term BLDC was originally introduced in the 1970s to describe motors intended as direct replacements for conventional DC motors \cite{hughes2013electric}. While minor differences exist between the variants, they all operate on the same basic principle: a three-phase motor with permanent magnets on the rotor and windings on the stator, where commutation is handled electronically rather than through brushes. (In this thesis, the term BLDC motor is used throughout, as it aligns with the terminology used in the motor datasheet and the moteus c1 controller documentation.)
 
 \subsection{Construction and Governing Effects}
-- vis utsnitt av motoren
-- forklar de fysiske lovene som genererer dreiemoment.
+\textbf{TODO: vis utsnitt av motoren}
+\textbf{TODO: forklar de fysiske lovene som genererer dreiemoment.}
 
 \subsection{Field Oriented Control}
-Introduser med problememene med pwm og sinus control,
+\textbf{TODO: Introduser med problememene med pwm og sinus control}
 
 %\section{Cogging}
 \section{the MIDI Protocol}
 MIDI is short for Musical Instrument Digital Interface and is the industry standard for communication between musical equipment \citep{deoliveira2017understandingmidipainlesstutorial}. Instead of communicating the sound signal itself, MIDI transmits messages describing events for instance like which note was played and how intensely it was played, but MIDI can also transmit how knobs were changed which the receiver can interpret to change the sound. Midi has a lot of functionality but only the functionality used in this project will be explained in the following sections.
 
 \subsection{MIDI messages and byte format}
-MIDI messages consists consists of a status byte and then optinally up to two databytes. The status byte identifies the message type and which MIDI channel the message is for. The optional data bytes contains the parameters for that message \cite{MMA1996}.
-The status bytes and databytes are sepparated by their most significant bit, status bytes using 1 and data byte using 0.
-Channel Voice messages are used to send information about a musical preformance on a spesific channel and can command stuff like:
+MIDI messages consist of a status byte and then optionally up to two data bytes. The status byte identifies the message type and which MIDI channel the message is for. The optional data bytes contain the parameters for that message \cite{MMA1996}.
+The status bytes and data bytes are separated by their most significant bit, status bytes using 1 and data bytes using 0.
+Channel Voice messages are used to send information about a musical performance on a specific channel and can command stuff like:
 Note On, Note Off, Control Change, Program Change and Pitch Bend. These messages consist of one status byte and two data byte.
 
 System Messages
 System Messages are intended for all receivers in the MIDI system. One variant is
-System Real Time messages. The Sytem Real Time messages are used to synchronize all clock-based equipment. They consist of only one status byte, and can be one of the following messages:
+System Real Time messages. The System Real Time messages are used to synchronize all clock-based equipment. They consist of only one status byte, and can be one of the following messages:
 
 \begin{itemize}
 	\item Timing Clock
@@ -351,7 +376,7 @@ System Real Time messages. The Sytem Real Time messages are used to synchronize 
 \end{itemize}
 The Real Time messages can be sent at any time and can appear anywhere in the message stream including between a status byte and a system byte of channel voice message.
 
-The timing clock message are used to synchronize, sending the byte F8H 24 times per quarter note.
+The timing clock messages are used to synchronize, sending the byte F8H 24 times per quarter note.
 
 
 \subsection{Examples}

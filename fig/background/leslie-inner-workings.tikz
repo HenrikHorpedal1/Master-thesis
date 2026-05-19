@@ -1,0 +1,76 @@
+\begin{tikzpicture}[>=latex, thick, font=\sffamily\small]
+
+  %% ── MAIN AMP ───────────────────────────────────────────────────
+  \draw (0.0, 3.0) rectangle (1.6, 4.4);
+  \node[align=center] at (0.8, 3.7) {MAIN\\AMP.};
+
+  %% ── 800 Hz CROSSOVER NETWORK ──────────────────────────────────
+  \draw (2.4, 0.4) rectangle (3.6, 5.2);
+  \node[align=center, rotate=90] at (3.0, 2.8) {800\,Hz\\CROSSOVER NETWORK};
+
+  %% Main amp → crossover
+  \draw (1.6, 3.7) -- (2.4, 3.7);
+
+  %% ── Crossover outputs ─────────────────────────────────────────
+  %% Treble wire: upper output, runs right then rises up into treble speaker (enters from below)
+  \draw (3.6, 4.05) -- (7.50, 4.05) -- (7.50, 4.55);
+  %% Bass wire: lower output, runs right then drops down into 15" speaker (enters from above)
+  \draw (3.6, 3.85) -- (7.30, 3.85) -- (7.30, 3.55);
+
+  %% ── TREBLE HORN (V-shape, closed trapezoidal arms meeting at apex) ─
+  %% Apex point: (7.50, 4.90); horizontal connector between arm throats at y=4.75
+  %% Left arm: closed trapezoid flaring up-and-left
+  \draw (7.50, 4.90) -- (6.00, 6.15) -- (5.55, 5.65) -- (7.30, 4.75) -- cycle;
+  %% Right arm: mirror image
+  \draw (7.50, 4.90) -- (9.00, 6.15) -- (9.45, 5.65) -- (7.70, 4.75) -- cycle;
+  %% Horizontal connector at the throat (between the two arms)
+  \draw (7.30, 4.75) -- (7.70, 4.75);
+  \node[right, align=left] at (9.55, 6.00) {TREBLE\\HORN};
+
+  %% ── TREBLE SPEAKER (small dumbbell straddling the wire) ───────
+  \draw[fill=white] (7.25, 4.65) rectangle (7.75, 4.75); %% top plate (mouth flange)
+  \draw[fill=white] (7.35, 4.55) rectangle (7.65, 4.65); %% narrower driver body
+  \node[right, align=left] at (7.80, 4.30) {COMPRESSION\\DRIVER};
+
+  %% ── 15" SPEAKER (cone with magnet, fires down into bass rotor) ─
+  %% (Sits above the rotor with a visible air gap.)
+  %% Magnet (larger rectangle on top of cone)
+  \draw[fill=white] (7.00, 3.05) rectangle (7.60, 3.55);
+  %% Cone: trapezoid — top edge matches magnet width, wide bottom faces the drum
+  \draw (7.00, 3.05) -- (7.60, 3.05) -- (8.50, 1.85) -- (6.10, 1.85) -- cycle;
+  %% Multiple parallel lines inside cone, representing surround/voice coil
+  \draw (6.32, 2.05) -- (8.28, 2.05);
+  \draw (6.45, 2.15) -- (8.15, 2.15);
+  \node[left, align=right] at (6.05, 2.65) {15''\,WOOFER};
+
+  %% ── BASS ROTOR (rectangular drum with elliptical quarter scoop) ─
+  \draw (6.05, 0.20) rectangle (8.55, 1.55);
+  %% Scoop: elliptical quarter arc — vertical tangent at top-left, horizontal at bottom-right
+  \draw[thick] (6.25, 1.40) arc[start angle=180, end angle=270, x radius=2.10, y radius=1.10];
+  \node[right, align=left] at (8.65, 0.85) {BASS\\ROTOR};
+
+  %% ── TREBLE MOTOR ──────────────────────────────────────────────
+  \draw (10.8, 4.10) rectangle (12.4, 5.40);
+  \node at (11.6, 4.75) {MOTOR};
+
+  %% ── BASS MOTOR ────────────────────────────────────────────────
+  \draw (10.8, 0.90) rectangle (12.4, 2.20);
+  \node at (11.6, 1.55) {MOTOR};
+
+  %% Vertical connector between the two motors
+  \draw (11.6, 2.20) -- (11.6, 4.10);
+
+  %% ── BELT DRIVES (dashed lines from motor pulleys to rotor pulleys) ─
+  %% Treble belt: horizontal from left side of treble motor (mid-height) to bottom of horn assembly
+  \draw[dashed] (10.8, 4.75) -- (7.70, 4.75);
+  %% Bass belt: horizontal from left side of bass motor (mid-height) to top of bass rotor
+  \draw[dashed] (10.8, 1.55) -- (8.55, 1.55);
+
+  %% ── MOTOR CONTROL ─────────────────────────────────────────────
+  \draw (2.4, -1.0) rectangle (4.4, -2.2);
+  \node[align=center] at (3.4, -1.6) {MOTOR\\CONTROL};
+
+  %% Motor control → bass motor (right then up)
+  \draw (4.4, -1.6) -- (11.6, -1.6) -- (11.6, 0.90);
+
+\end{tikzpicture}

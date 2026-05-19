@@ -2,40 +2,60 @@
 
 \chapter{Design}
 
+A Leslie Rotating speaker is not a high-fidelity speaker, it is not meant to have the flattest possible frequency response. A Leslie speaker is used to change the sound, not reproduce it \citep{TheatreOrgansMysteryLeslie}.
+
 \section{Electronics}
 
 \subsection{Moteus C1 motor controller}
+The motor controller chosen for this project is the Moteus C1 motor controller. It turns a hobby brushless motor into a high-performance servo-actuator for low-cost and low-power systems \textbf{TODO: kilde, mjbots.com}. It is an open source project and features
+\begin{itemize}
+	\item Field Oriented Control
+	\item An integrated magnetic encoder
+	\item High-speed CAN-fd communication at 5Mbps
+	\item Position, velocity, and torque control with acceleration and velocity limited trajectories
+	\item Fast control loops running at 15-30kHz.
+\end{itemize}
 
-\subsection{Measuring}
+%(kilde https://mjbots.github.io/moteus/)
+
+\subsection{Observing the load with ma600 magnetic encoder}
 
 \subsection{Arduino Nano Esp32}
 
 \subsection{CAN Breakout board}
+In order for the Arduino Nano ESP32 to communicate with the moteus c1 motor controller with CAN fd, a CAN-fd transceiver and receiver is needed. The CAN Transceiver MCP2518 from Soldered Electronics features a MCP2518FD IC that allows the use of both CAN 2.0B and CAN-fd \textbf{TODO: kilde datablad}. It also features an on-board jumper to activate a 120 Ohm termination resistor. The Arduino Nano Esp32 connects to CAN breakout board via SPI, the schematic is seen in fig x.
 
-\subsubsection{CAN bus schematic}
+\begin{figure}
+	\begin{center}
+		\includesvg[width=0.3\textwidth]{fig/design/Arduino-nano-and-can-breakout.svg}
+	\end{center}
+	\caption{}\label{fig:arduino-nano-can-breakout}
+\end{figure}
 
-In order for the Arduino Nano esp32 to communicate with the moteus c1 motor contorller with CAN fd, a CAN-fd
-tranciever and receiver is needed.
+
+The Schematic of the CAN bus is presented in fig y.
 \citep{soldered_mcp2518_overview}
 
+\subsection{Resistor Ladder for input selection}
+
+
 \subsection{Choice of bottom woofer/speaker}
-justify the choice of speakers EV1824M
-Celestion
+\textbf{TODO: justify the choice of speakers EV1824M Celestion}
 
 \subsection{Choice of horn driver}
-The original horn driver used in the Leslie 122 is the Jensen V21 (legg in kilde). A frequency response curve of this particular
+The original horn driver used in the Leslie 122 is the Jensen V21 \textbf{TODO: legg inn kilde}. A frequency response curve of this particular
 speaker was not retrievable. However studying vendors selling replacement horn drivers it is possible to infer the preferred frequency
 range.
 
-The Electro Voice 1825M was bought from finn.no for 600 kr. According to its datasheet (see \autoref{app:EV1824M} it has delivers
+The Electro Voice 1825M was bought from finn.no for 600 kr. According to its datasheet (see \autoref{app:EV1824M}) it delivers
 plus minus 5 dB between 300 to 4500 Hz.
 
 \subsection{Crossover network}
-In classis Leslie speakers like the Leslie 122, a crossover network splits the audio signal from the amplifier with bass going to the bottom woofer and treble to the upper horn driver. The filter is a 2nd order Butterworth filter with with the crossover placed at 800Hz(sett inn kilde).
+In classic Leslie speakers like the Leslie 122, a crossover network splits the audio signal from the amplifier with bass going to the bottom woofer and treble to the upper horn driver. The filter is a 2nd order Butterworth filter with the crossover placed at 800Hz \textbf{TODO: sett inn kilde}.
 
-However since this Leslie build is more aimed at being used with guitar and organ a little less bass is needed since the guitar doesnt have as much bass frequency as an Organ.
+However since this Leslie build is more aimed at being used with guitar and organ a little less bass is needed since the guitar doesn't have as much bass frequency as an Organ.
 
-The following crossover was designed based on parts earlier accuired.
+The following crossover was designed based on parts earlier acquired.
 
 \begin{figure}[H]
 	\centering
@@ -57,15 +77,14 @@ For the horn high-pass section, $C_1$ and $L_2$ form an $LC$ network whose natur
 
 \clearpage
 \section{Mechanical}
-All parts were designed in Autodesk Fusion with a bottom up approach, meaning the parts are designed individually before being assebeled into a complete design.(finn kilde, vurder om dette stemmer)
+All parts were designed in Autodesk Fusion with a bottom up approach, meaning the parts are designed individually before being assembled into a complete design. \textbf{TODO: finn kilde, vurder om dette stemmer}
 
-Justify why the rotors are not enclosed to increase the AM-modulation.
+
+\textbf{TODO: Justify why the rotors are not enclosed to increase the AM-modulation.}
 
 \subsection{Design of Horn}
 
-Si noe om at dette ikke er et perfekt akustisk horn, men heller en måte å flytte lyden til å peke ut
-
-A picture of a Leslie horn next to a ruler was found on the internet (putt inn bilde i vedlegg) with the ruler in the same picture it made it possible to infer some of the dimensions of this horn. The diameter of the throat was approximated to ... with the use of (online tool) and the length of the horn projected down in a xy-plane was approximated to yy.
+A picture of a Leslie horn next to a ruler was found on the internet \textbf{TODO: putt inn bilde i vedlegg} with the ruler in the same picture it made it possible to infer some of the dimensions of this horn. The diameter of the throat was approximated to \textbf{TODO: ...} with the use of \textbf{TODO: online tool} and the length of the horn projected down in a xy-plane was approximated to \textbf{TODO: yy}.
 
 This was used as a starting point for the design.
 
@@ -79,9 +98,9 @@ The centre line of the horn was parameterized into a vertical straight section o
 \end{figure}
 
 
-Then AI was used to generate a script generating circles along the centerline with areas corresponding to (referer til horn-equation i background). The circles was then connected with the use of loft in autodesk fusion to generate the Airway of the horn (forlkar hva det betyr.).
+Then AI was used to generate a script generating circles along the centreline with areas corresponding to \textbf{TODO: referer til horn-equation i background}. The circles were then connected with the use of loft in Autodesk Fusion to generate the airway of the horn \textbf{TODO: forklar hva det betyr}.
 
-\begin{figure}
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.48\textwidth]{fig/design/horn-air-way-circles.png}\hfill
 		\includegraphics[width=0.48\textwidth]{fig/design/airway-body.png}
@@ -90,9 +109,9 @@ Then AI was used to generate a script generating circles along the centerline wi
 \end{figure}
 
 
-The parameters of blabla was determined more by practical echanical constraintes, (the turning radius is way to steep, finn kilde som siser at den skal være x antall større enn diameter.
+The parameters of \textbf{TODO: blabla} were determined more by practical mechanical constraints \textbf{TODO: the turning radius is way too steep, finn kilde som sier at den skal være x antall større enn diameter}.
 
-To verify the design the equation from background was used. Here it is assumed the horn is straight something it obviously is not, så si noe om at det er en stor antagelse.
+To verify the design the equation from background was used. Here it is assumed the horn is straight something it obviously is not \textbf{TODO: si noe om at det er en stor antagelse}.
 
 
 The flare constant $m$ can be determined from the throat diameter $d_t = 22\,\text{mm}$, mouth diameter $d_m = 101.6\,\text{mm}$, and acoustic centreline length $L = 285\,\text{mm}$. The throat and mouth areas are
@@ -110,9 +129,9 @@ Substituting into \autoref{eq:horn-cutoff} gives the cutoff frequency
 \]
 This is below the driver's rated lower limit of 300\,Hz, confirming that the horn supports the full operating range of the driver.
 
-The Horn it self could then be designed around the airway of the horn, similarly to other Leslies a dummy horn placed på motsatt side was added in order to place the center of mass on the axis of rotation.
+The horn itself could then be designed around the airway of the horn, similarly to other Leslies a dummy horn placed on the opposite side was added in order to place the centre of mass on the axis of rotation.
 
-\begin{figure}
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.48\textwidth]{fig/design/horn.png}\hfill
 		\includegraphics[width=0.48\textwidth]{fig/design/horn cross section.png}
@@ -120,54 +139,55 @@ The Horn it self could then be designed around the airway of the horn, similarly
 	\caption{}\label{fig:horn-design}
 \end{figure}
 \subsection{Design of Drum}
-The drum earlier designed and implemented was based on some ca. estimates of the size of the drum of a Leslie (specify model). However since this project will use a 12 inch speaker as the woofer, it is assumed that it is sensibel to scale the diameter of the drum to a $\frac{12}{15}$.
-The earlier Drum also when rotating at the upper end of velocieied caused the enclosuer to wiggle, indicating a not proper balaced rotor.
-To try to overcome this specialy causion in the desgin was done. With the help of AI tools an add-in for Autodesk fusion was coded, which can be used to align the pricipal inertia axis of the Drum with the z-axis, ensuring both static balance and dynamic balance (finn kilde).
+The drum earlier designed and implemented was based on some approximate estimates of the size of the drum of a Leslie \textbf{TODO: specify model}. However since this project will use a 12 inch speaker as the woofer, it is assumed that it is sensible to scale the diameter of the drum to a $\frac{12}{15}$.
+The earlier drum also when rotating at the upper end of velocities caused the enclosure to wiggle, indicating a not properly balanced rotor.
+To try to overcome this, special caution in the design was taken. With the help of AI tools an add-in for Autodesk Fusion was coded, which can be used to align the principal inertia axis of the drum with the z-axis, ensuring both static balance and dynamic balance \textbf{TODO: finn kilde}.
 
-fant en youtube-video med en som tok mål.
-\begin{figure}
+\textbf{TODO: fant en youtube-video med en som tok mål.}
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.48\textwidth]{fig/design/drum-back.png}
 		\includegraphics[width=0.48\textwidth]{fig/design/drum-front.png}
 	\end{center}
-	\caption{}\label{fig:}
+	\caption{}\label{fig:drum-front-back}
 \end{figure}
 
 \subsection{Drive belt and pulleys}
 Early testing showed that the 6mm drive belt used was a source of mechanical noise and therefore 3mm was used instead.
 
-(begrunne hvorfor giring kan være lurt):
-The motors are rated for 4000 rpm (ref) appendix. Also the motor controller is more aimed at highspeed control (sett in kilde fra moteus). si noe om torque multipliing.
+\textbf{TODO: begrunne hvorfor giring kan være lurt}
+The motors are rated for 4000 rpm \textbf{TODO: ref appendix}. Also the motor controller is more aimed at high-speed control \textbf{TODO: sett inn kilde fra moteus}. \textbf{TODO: si noe om torque multiplying.}
 
-Therfore A gearing factor of 3.5 and 4.0 was choosen lag fancy tabell. The center to centre distances was decided by practical considerations, with the load placed in the middle of the square of the cabinet and the motor pulley placed with distances to walls in mind. That yielded the centre to centre distances: blablabla
+Therefore a gearing factor of 3.5 and 4.0 was chosen \textbf{TODO: lag fancy tabell}. The centre to centre distances were decided by practical considerations, with the load placed in the middle of the square of the cabinet and the motor pulley placed with distances to walls in mind. That yielded the centre to centre distances: \textbf{TODO: blablabla}
 
-In previus work the 6mm drive belt had audiable noise comming from the drive belt. At this thickness a correct install-tension was too great(forssett å si hvorfor 6mm ikke funka bra) Therefore it was desiced to try to use the 3 mm version in stead.
+In previous work the 6mm drive belt had audible noise coming from the drive belt. At this thickness a correct install-tension was too great \textbf{TODO: fortsett å si hvorfor 6mm ikke funka bra}. Therefore it was decided to try to use the 3 mm version instead.
 
-(referer til appendix og datasheet) Shows the rated working loads at different install tensions for the 3mm drive belt. A simple calculation for both ends of the scale with some assumtions of mass, andre parametere gives the following achiavble accelration with tensions of 0 to 10 percesnt.
+\textbf{TODO: referer til appendix og datasheet} Shows the rated working loads at different install tensions for the 3mm drive belt. A simple calculation for both ends of the scale with some assumptions of mass \textbf{TODO: andre parametere} gives the following achievable acceleration with tensions of 0 to 10 percent.
 
 which shows it is sufficient with proper tension.
 
-The cut length for each belt could then be calculated, following the instructions from the manufacturer (ref appendix.). First the reference lenght is calculated:
+The cut length for each belt could then be calculated, following the instructions from the manufacturer \textbf{TODO: ref appendix}. First the reference length is calculated:
 \begin{equation}
 	L = 2C + \frac{\pi}{2}(D+d) + \frac{(D-d)^2}{4C}
 	\label{eq:referece-length}
 \end{equation}
-This gives reference lenghts x and y for the upper and lower rotors.
-(appendix) give the following formula for cut lenght when a butt weld is done.
+This gives reference lengths \textbf{TODO: x and y} for the upper and lower rotors.
+\textbf{TODO: appendix} gives the following formula for cut length when a butt weld is done.
 \begin{equation}
-	Cut Lenght = \frac{Reference Length}{1 + \% tension}
+	Cut Length = \frac{Reference Length}{1 + \% tension}
 	\label{eq:cut-length}
 \end{equation}
 
-Which becomes x and y for the upper and lower drive system
+\textbf{TODO: Which becomes x and y for the upper and lower drive system}
 
 \subsection{Assembling pulleys with deflectors}
+
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=0.48\textwidth]{fig/design/drum-and-pulley.png}
 		\includegraphics[width=0.48\textwidth]{fig/design/drum-and-pulley-bottom.png}
 	\end{center}
-	\caption{}\label{fig:}
+	\caption{}\label{fig:drum-and-pulley}
 \end{figure}
 
 \begin{figure}
@@ -175,9 +195,10 @@ Which becomes x and y for the upper and lower drive system
 		\includegraphics[width=0.48\textwidth]{fig/design/horn-and-pulley-from-above.png}
 		\includegraphics[width=0.48\textwidth]{fig/design/horn-and-pulley.png}
 	\end{center}
-	\caption{}\label{fig:}
+	\caption{}\label{fig:horn-and-pulley}
 \end{figure}
 
+\textbf{TODO: a small thing on one side to place the centre of mass in 0,0}
 
 
 
@@ -185,32 +206,35 @@ Which becomes x and y for the upper and lower drive system
 \subsubsection{Bearing seat and Horn driver mount}
 
 
-A bearing of type (6306.2zr.c3 kulelager) was bought on Finn.no for 50 kr. A seat to mount the bearing was designed
-in Autodesk Fusion.
+A bearing of type (6306.2zr.c3 kulelager) was bought on Finn.no for 50 kr. A seat to mount the bearing was designed in Autodesk Fusion. A mount for the ma600 encoder was placed according to instructions from \textbf{TODO: blog post fra mj bots}, centred on the magnet 0.5 mm distance.
 
-a mount for the ma600 encoder was placed according to instructions from (blog post fra mj bots), centered on the magnet 0.5 mm distance.
-
-\begin{figure}
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.48\textwidth]{fig/design/bearing-seat-front.png}
 		\includegraphics[width=0.48\textwidth]{fig/design/bearing-seat-cross-section.png}
 	\end{center}
-	\caption{}\label{fig:}
+	\caption{}\label{fig:bearing-seat}
 \end{figure}
 
-
-\begin{figure}
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.48\textwidth]{fig/design/driver and bearing.png}
 		\includegraphics[width=0.48\textwidth]{fig/design/driver.png}
 	\end{center}
-	\caption{}\label{fig:}
+	\caption{}\label{fig:driver-and-bearing}
 \end{figure}
 
+\subsection{Full Horn driver assembly}
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{fig/implementation/horn-driver-assembly.png}
+	\end{center}
+	\caption{}\label{fig:horn-driver-assembly}
+\end{figure}
 
 \subsection{Motor and motor bracket}
 
-The Moteus C1 motor controller uses a diametrically magnetized magnet in order to get feedback for both commutation and position of the rotor shaft.(sett inn kilde til moteus dokumentasjon)
+The Moteus C1 motor controller uses a diametrically magnetized magnet in order to get feedback for both commutation and position of the rotor shaft. \textbf{TODO: sett inn kilde til moteus dokumentasjon}
 
 
 "
@@ -221,7 +245,7 @@ The moteus controller must be mounted so that the encoder is (a) centered latera
 " \citep{mjbots_moteus_mechanical_setup}
 
 In order to mount the Moteus controller precisely in relation to the motor and magnet, a 3D model
-of the BLDC motor which to be used was designed in Autodesk Fusion, based of the spesifications in \autoref{app:motor},
+of the BLDC motor to be used was designed in Autodesk Fusion, based on the specifications in \autoref{app:motor},
 
 
 A 3D model of
@@ -248,9 +272,9 @@ and \autoref{fig:bracket2}
 
 \subsection{Cabinet design}
 
-According to the manufacturer of the bottom speaker, Celestion, states that while speakers designed for high-fidelity audio or bass cabinets the use of Thiele-Small parameters is crucial to ensure en good result. "Guitar speakers often sound best with a simple, well-constructed, and adequately sized enclosure that focuses on practical dimensions and volume."(parafraser)
-Celestion states that slight differences in the Thiele-Small parameters will be completely overridden by musical non-linear properties of the guitar speaker especially when driven hard \cite{celestion_1x12_cabinet}
-quote Celestions website that the Thiele small parameters does not matter in a highly non linear guitar speaker. Celestion states a recommended internal volume for 42.5 to 70.8 litres as a starting point. According
+According to the manufacturer of the bottom speaker, Celestion, speakers designed for high-fidelity audio or bass cabinets require Thiele-Small parameters to ensure a good result. "Guitar speakers often sound best with a simple, well-constructed, and adequately sized enclosure that focuses on practical dimensions and volume." \textbf{TODO: parafraser}
+Celestion states that slight differences in the Thiele-Small parameters will be completely overridden by musical non-linear properties of the guitar speaker especially when driven hard \cite{celestion_1x12_cabinet}.
+\textbf{TODO: quote Celestion's website that the Thiele-Small parameters do not matter in a highly non-linear guitar speaker.} Celestion states a recommended internal volume of 42.5 to 70.8 litres as a starting point. According
 
 The internal volume of the cabinet was designed to 49.14 litres. Closed cabinet
 \begin{figure}
@@ -274,7 +298,9 @@ The internal volume of the cabinet was designed to 49.14 litres. Closed cabinet
 	\caption{}\label{fig:system-overview}
 \end{figure}
 
-\subsection{Servo System}
+\subsection{Control Laws}
+
+
 \begin{figure}
 	\begin{center}
 		\input{tikz/servo-system.tex}
@@ -284,9 +310,3 @@ The internal volume of the cabinet was designed to 49.14 litres. Closed cabinet
 
 
 \cleardoublepage
-
-
-
-
-
-
