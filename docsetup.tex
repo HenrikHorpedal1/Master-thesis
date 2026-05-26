@@ -31,6 +31,7 @@
 \usepackage{underscore} % makes _ safe outside math mode (fixes Inkscape-exported SVG labels)
 
 \usepackage{fvextra}
+\immediate\write18{mkdir -p build}% ensure minted cache dir exists on Overleaf too
 \usepackage[outputdir=build]{minted}
 \usemintedstyle{friendly}
 \setminted{fontsize=\small, linenos, frame=lines, framesep=2mm, breaklines}
