@@ -1,3 +1,4 @@
+\usepackage{longtable}
 \usepackage{pdfpages}
 \usepackage{setspace}
 \usepackage{graphicx}
@@ -7,7 +8,7 @@
 \usepackage{amsmath}
 \usepackage{color}
 \usepackage[Lenny]{fncychap}
-\usepackage[pdftex,bookmarks=true]{hyperref}
+\usepackage[bookmarks=true]{hyperref}
 \hypersetup{
 	colorlinks,%
 	citecolor=black,%
@@ -28,6 +29,17 @@
 \usepackage{booktabs}
 \usepackage{nicefrac}
 \usepackage{underscore} % makes _ safe outside math mode (fixes Inkscape-exported SVG labels)
+
+\usepackage{fvextra}
+\usepackage[outputdir=build]{minted}
+\usemintedstyle{friendly}
+\setminted{fontsize=\small, linenos, frame=lines, framesep=2mm, breaklines}
+\setmintedinline{bgcolor=gray!10, breaklines, breakanywhere, fontsize=\normalsize}
+\providecommand*{\listingautorefname}{Listing}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\newcommand{\algorithmautorefname}{Algorithm}
 
 
 \usepackage{tikz}
@@ -68,7 +80,8 @@
 	disp/.style   = {<-, line width=1.2pt},
 }
 
-%\floatstyle{boxed} 
+%\floatstyle{boxed}
+\floatstyle{plain}
 \restylefloat{figure}
 
 % ShareLaTeX does not support glossaries now. Sorry...
