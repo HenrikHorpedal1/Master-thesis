@@ -2,6 +2,8 @@
 
 \chapter{Introduction}
 
+The Leslie speaker is an electromechanical audio device that produces a characteristic effect by rotating a horn or speaker baffle. Despite being invented over eighty years ago, it remains sonically irreplaceable across a wide range of musical genres(dull down?). This thesis describes the design and implementation of a MIDI-controlled Leslie-style speaker system using brushless DC motors, bringing precise digital control to a fundamentally analogue effect. The following sections provide historical context, motivation for the work, and a formal definition of the task.
+
 \section{History of the Leslie speaker}
 The Leslie speaker was invented by Donald Leslie between 1937 and 1940 in Los Angeles, California \cite{vail2002}. His inspiration came after attending a demonstration of the then-new Hammond Organ, which impressed him greatly in the showroom but left him disappointed when he tried it at home. The demonstration had taken place in a long, narrow room with excellent acoustics, conditions that the instrument could not replicate in a domestic setting.
 
@@ -10,9 +12,9 @@ What Leslie found himself missing was the sense of motion inherent to pipe and t
 In 1940, he founded his own company, Electro Music, to develop and commercialise the concept. He approached Hammond with the idea, but the company showed no interest; Laurence Hammond, in particular, was dismissive and actively discouraged the pairing of his organs with Leslie's cabinet. The two companies remained at odds for decades, until Hammond eventually acquired Electro Music in 1980, ending the long-running feud \citep{motleymoose2015hammondleslie}.
 
 \subsection{Famous songs that use the Leslie sound effect}
-This section is taken in its entirety from \cite{horpedal2025projectthesis}.
+This section apart from the last example is taken in its entirety from the specialization project leading up to this thesis, \citep{horpedal2025projectthesis}.
 
-Although inseparable from the Hammond organ in many listeners' minds, Leslie and Leslie-style speakers have been used with instruments other than organ. To further motivate this work, here are four handpicked famous songs that showcase the diversity and influence of the Leslie speaker.
+Although inseparable from the Hammond organ in many listeners' minds, Leslie and Leslie-style speakers have been used with instruments other than organ. To further motivate this work, here are five handpicked famous songs that showcase the diversity and influence of the Leslie speaker.
 
 \textbf{``Black Hole Sun'' --- Soundgarden}\\
 Released in May 1994 by the grunge band Soundgarden, ``Black Hole Sun'' features a very distinct guitar sound entering at \textbf{00:16}. The band's lead guitarist confirmed that they used a Leslie speaker in an interview with \textit{Guitar World} in 1996 \citep{KittsTolinskiSteinblatt1998NirvanaGrungeRevolution}. Other sources state that the model was a Leslie 16, a model designed specifically for guitar \citep{Gill2019CornellToneBlackHoleSun}.
@@ -26,7 +28,17 @@ Released in May 1994 by the grunge band Soundgarden, ``Black Hole Sun'' features
 \textbf{``Tomorrow Never Knows'' --- The Beatles}\\
 On this track, John Lennon wanted his voice to sound like the Dalai Lama. The sound engineer Geoff Emerick suggested recording Lennon's vocal and re-recording it through a Leslie speaker, which is what can be heard on ``Tomorrow Never Knows'' \citep{Beatles2000Anthology}.
 
+\textbf{``Planet Caravan'' --- Black Sabbath}\\
+Released on the album \textit{Paranoid} in 1970. In an interview with Kerrang! 50 years after the release of the album, guitarist of Black Sabbath Tony Iommi states Ozzy Osbournes vocals were ran through Leslie speaker \citep{alexander2020paranoid}.
+
 \section{Motivation}
+Several factors motivated this work. A new Hammond Leslie 122H retails for NOK~82\,900 \citep{thomann_leslie122h}, which puts an authentic Leslie out of reach for most amateur musicians. Building a lower-cost alternative, even one that does not fully match the original, makes the general idea of a rotating speaker more accessible to hobbyists who would otherwise not be able to experiment with it.
+
+The project also touches several engineering fields at once. Mechanical design, embedded systems, signal processing and control theory all come together in a single system, which makes it a good opportunity to gain practical experience across disciplines.
+
+A personal interest in music and audio technology has been an important driver. The Leslie effect has a distinct character that is hard to replicate by other means, and the idea of building a working version from scratch was in itself a strong motivation.
+
+Lastly, no hardware implementation of a beat-synchronised MIDI-controlled Leslie speaker appears to exist. Software emulations of the Leslie effect are common, but locking the physical rotation of a real cabinet to musical tempo has not been done before, at least not as far as could be found during the work on this thesis.
 
 \section{Task Definition}
 

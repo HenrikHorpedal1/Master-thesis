@@ -1,7 +1,66 @@
 %===================================== CHAP 4 =================================
 
 \chapter{Implementation}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{fig/implementation/working-desk-during-implementation}
+	\caption*{}
+\end{figure}
+
+\section{Electronics}
+\subsection{Power}
+Power cables for the Moteus motor divers were constructed by soldering a XT30 connector on one end, following the instructions from Moteus
+(link).
+
+A fuse holder was joined to the 16 AWG wire with a butt splice and the other end of the cable was termintated with
+bootlace ferrules for secure connection to the terminals of the Power supply unit. The cable is shown in \autoref{fig:powercable}.
+
+To facilitate for testing the system more safely a box was made to house the powersupply unit, to not have exposed mains voltage on the terminals of the PSU.
+
+Sett inn bilder av boksen med strømforsyning inni.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/implementation/power-cord.JPG}\hfill
+	\caption{}
+	\label{fig:powercable}
+\end{figure}
+
+
+Phase wires were soldered to the Moteus boards, see \autoref{fig:soldered-moteus}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/implementation/phase-wire-soldered.JPG}\hfill
+	\caption{}
+	\label{fig:soldered-moteus}
+\end{figure}
+
+The moteus boards could then be assembled on the back of the motors.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/implementation/mounted-moteus.JPG}\hfill
+	\caption{}
+	\label{fig:mounted-moteus}
+\end{figure}
+
+\subsection{Can Bus}
+Originally the Can bus was supposed to use small PCBs to for the CAN Bus from the main trunk, however since the funding was starting to run out the junctions were made by directly soldering the cables to implement the diagram from section...
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{fig/implementation/lodda-can-bus.png}
+	\end{center}
+	\caption{}\label{fig:can-bus-wiring}
+\end{figure}
+
+\subsection{Crossover network}
+
 \section{Mechanical}
+Most of the parts aside from the cabinet were 3D printed in PLA. The reason for PLA was because it was available to use for free from the university. Most of the parts had to be printed multiple time to get tolerances of screw-holes etc correct. Prototyping done in PLA and then later do more in PETG.
 \subsection{Cabinet}
 The CAD files for the cabinet was given to the institue's workshop and the mdf plates were cut out with a CNC milling machine.
 \begin{figure}
@@ -11,8 +70,12 @@ The CAD files for the cabinet was given to the institue's workshop and the mdf p
 	\caption{bilde skal byttes}\label{fig:cut-out-mdf}
 \end{figure}
 
+Unfortunaltly it was experienced only here that the MDF material was in fact 19mm and not 18.
 
-\section{Motors and motor brackets}
+Then counter sink pockets(?) for every screw hole was drilled. Then pilot holes for screws were drilled into the edge.
+
+
+\subsection{Motors and motor brackets}
 
 "If using 3D printed mounts, care should be taken to ensure the mount does not warp. PLA and other low temperature filaments will warp under load at room temperature, and will do so even more when exposed to thermal heating like from a motor controller. It is recommended to use PETG, PC, or a filament designed to not warp at the operating temperature you intend."
 \citep{mjbots_moteus_mechanical_setup}
@@ -70,56 +133,6 @@ To align the ends of the belt when welding them together a small mounting jig wa
 The excess plastic were cut off.
 
 \clearpage
-\section{Electronics}
-\subsection{Power}
-Power cables for the Moteus motor divers were constructed by soldering a XT30 connector on one end, following the instructions from Moteus
-(link).
-
-A fuse holder was joined to the 16 AWG wire with a butt splice and the other end of the cable was termintated with
-bootlace ferrules for secure connection to the terminals of the Power supply unit. The cable is shown in \autoref{fig:powercable}.
-
-To facilitate for testing the system more safely a box was made to house the powersupply unit, to not have exposed mains voltage on the terminals of the PSU.
-
-Sett inn bilder av boksen med strømforsyning inni.
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/implementation/power-cord.JPG}\hfill
-	\caption{}
-	\label{fig:powercable}
-\end{figure}
-
-
-Phase wires were soldered to the Moteus boards, see \autoref{fig:soldered-moteus}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/implementation/phase-wire-soldered.JPG}\hfill
-	\caption{}
-	\label{fig:soldered-moteus}
-\end{figure}
-
-The moteus boards could then be assembled on the back of the motors.
-
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{fig/implementation/mounted-moteus.JPG}\hfill
-	\caption{}
-	\label{fig:mounted-moteus}
-\end{figure}
-
-\subsection{Can Bus}
-Originally the Can bus was supposed to use small PCBs to for the CAN Bus from the main trunk, however since the funding was starting to run out the junctions were made by directly soldering the cables to implement the diagram from section...
-\begin{figure}
-	\begin{center}
-		\includegraphics[width=0.95\textwidth]{fig/implementation/lodda-can-bus.png}
-	\end{center}
-	\caption{}\label{fig:can-bus-wiring}
-\end{figure}
-
-
 
 \subsection{Drum}
 
@@ -132,7 +145,7 @@ The pieces to make up the drum was lasercut out of 6mm mdf,
 	\label{fig:lasercut-drum-pieces}
 \end{figure}
 
-The scoop, the curved surface in (referer til design) was made by two sheets of bent plywood. this was done the following way:
+The scoop, the curved surface in (referer til design) was made by two sheets of bent plywood. This was done the following way:
 The two pieces of plywood were lasercut. Then a jig for bending was designed and implemented (se appendix). Then the two plywood pieces were soaked in warm water for 30 minutes, and then clamped in the jig for 24 hours, then the pieces were glued together and clamped in the jig for another 24 hours.
 
 \begin{figure}[H]
@@ -160,11 +173,24 @@ The two pieces of plywood were lasercut. Then a jig for bending was designed and
 			right wall                          & 203.4 \\
 			scoop                               & 351.6 \\
 			scoop stabilizer                    & 44.0  \\
+			magnet                              & 24.4  \\
+			pulley (trinse)                     & 72.6  \\
+			captured nut insert (×2)            & 7.4   \\
+			spacer                              & 13.6  \\
+			pin (tapp)                          & 5.4   \\
+			M4 nut                              & 1.0   \\
+			M4 countersunk screw, 20\,mm        & 1.55  \\
+			M4 screw, 50\,mm                    & 4.0   \\
+			M4 screw, 35\,mm                    & 2.9   \\
 			total weight, summed                & xxxx  \\
 			\hline
 		\end{tabular}
 	\end{center}
 \end{table}
+
+Since the nuts and screws are not modeled their weight are added to the closest bodies.
+The nuts are added to the trapped nut bodies 4 each.
+Four M4 countersunk screws are added to pulley and four are added to the spacer, two 35\,mm M4 screws and two 50\,mm M4 screws.
 
 
 
@@ -175,14 +201,14 @@ Entering these measured masses into the fusion add-in, yielded the following cor
 		\begin{tabular}[c]{l|l}
 			\hline
 			\multicolumn{1}{c|}{\textbf{correction mass index}} &
-			\multicolumn{1}{c}{\textbf{calculated mass}}                 \\
+			\multicolumn{1}{c}{\textbf{calculated mass}}                  \\
 			\hline
-			lower front                                         & 17.934 \\
-			lower left                                          & 29.295 \\
-			lower right                                         & 29.732 \\
-			upper front                                         & 29.759 \\
-			upper left                                          & 29.034 \\
-			upper right                                         & 29.790 \\
+			lower front                                         & 17.9341 \\
+			lower left                                          & 29.2955 \\
+			lower right                                         & 29.7316 \\
+			upper front                                         & 29.7590 \\
+			upper left                                          & 29.0343 \\
+			upper right                                         & 29.7897 \\
 			\hline
 		\end{tabular}
 	\end{center}
@@ -192,15 +218,446 @@ Entering these measured masses into the fusion add-in, yielded the following cor
 
 
 \clearpage
+\section{Moteus configuration}
+\label{sec:moteus-config}
+
+All configuration steps were performed with a laptop connected to the CAN bus via a
+USB-to-CAN adapter (mjbots fdcanusb).
+
+\subsection{Tooling}
+
+The \texttt{moteus-gui} package provides both the \texttt{tview} graphical parameter editor
+and the \texttt{moteus\_tool} command-line utility used throughout the configuration procedure.
+It is installed with:
+
+\begin{listing}[H]
+	\begin{minted}{bash}
+python -m pip install moteus-gui
+\end{minted}
+	\caption{Installing the moteus Python tooling.}
+	\label{lst:moteus-install}
+\end{listing}
+
+\noindent
+\texttt{tview} was launched to inspect and set servo parameters interactively via the CAN bus.
+
+\subsection{Initial servo parameters}
+
+The following parameters were set in \texttt{tview} before calibration.
+Each controller was assigned a unique CAN node ID: ID~1 for the drum motor and ID~2 for the
+horn motor.
+The peak phase current was limited to 6\,A, and a modest acceleration limit was set as a
+starting point.
+
+\begin{table}[H]
+	\caption{Initial Moteus servo parameters set via tview.}
+	\label{tab:moteus-params}
+	\begin{center}
+		\begin{tabular}[c]{l l l}
+			\hline
+			\textbf{Parameter}                   & \textbf{Value}     & \textbf{Note}                    \\
+			\hline
+			\texttt{id.id}                       & 1 (drum), 2 (horn) & Unique CAN node IDs              \\
+			\texttt{servo.max\_current\_A}       & 6                  & Peak phase current limit         \\
+			\texttt{servo.max\_velocity}         & 33.3\,Hz           & 500\,RPM $\times$ 1/4 belt ratio \\
+			\texttt{servo.default\_accel\_limit} & 100                & Initial value                    \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\subsection{Firmware update}
+
+Firmware was downloaded from the mjbots GitHub releases page and flashed to each controller
+using \texttt{moteus\_tool}:
+
+\begin{listing}[H]
+	\begin{minted}{bash}
+python3 -m moteus.moteus_tool --target 1 --flash moteus-x.y.z.elf
+python3 -m moteus.moteus_tool --target 2 --flash moteus-x.y.z.elf
+\end{minted}
+	\caption{Flashing firmware to the drum (ID~1) and horn (ID~2) controllers.}
+	\label{lst:moteus-flash}
+\end{listing}
+
+\subsection{Motor calibration}
+
+After flashing, each controller was calibrated to measure motor resistance, inductance,
+and the encoder offset.
+Calibration spins the motor through a controlled sequence and stores the results in
+non-volatile memory:
+
+\begin{listing}[H]
+	\begin{minted}{bash}
+python3 -m moteus.moteus_tool --target 1 --calibrate
+python3 -m moteus.moteus_tool --target 2 --calibrate
+\end{minted}
+	\caption{Running the built-in calibration routine on both controllers.}
+	\label{lst:moteus-calibrate}
+\end{listing}
+
+\noindent
+Minimal PID gains were required before calibration could complete successfully.
+The gains below were used as a starting point, with all other gain terms disabled:
+
+\begin{listing}[H]
+	\begin{minted}{bash}
+conf set servo.pid_position.kp 0.005
+conf set servo.pid_position.kd 0.025
+\end{minted}
+	\caption{Minimal PID gains set in tview prior to calibration.}
+	\label{lst:moteus-init-pid}
+\end{listing}
+
+\subsection{Encoder nonlinearity compensation}
+
+The \texttt{compensate\_encoder.py} utility characterises and corrects periodic errors in the
+magnetic encoder reading by spinning the motor at a known velocity and fitting a correction
+table.
+It was run on each controller with the \texttt{--plot} and \texttt{--analyze} flags to
+inspect the result:
+
+\begin{listing}[H]
+	\begin{minted}{bash}
+python utils/compensate_encoder.py --target 2 --plot --analyze
+python utils/compensate_encoder.py --target 1 --plot --analyze
+\end{minted}
+	\caption{Encoder nonlinearity compensation for horn (ID~2) and drum (ID~1).}
+	\label{lst:moteus-enc-comp}
+\end{listing}
+
+\noindent
+Both controllers produced a compensation table of 256 entries.
+The post-compensation analysis results are summarised in \autoref{tab:enc-comp-results}.
+
+\begin{table}[H]
+	\caption{Post-compensation encoder analysis results.}
+	\label{tab:enc-comp-results}
+	\begin{center}
+		\begin{tabular}[c]{l l l}
+			\hline
+			\textbf{Motor} & \textbf{Mean velocity (rev/s)} & \textbf{Std.\ dev.\ (rev/s)} \\
+			\hline
+			Horn (ID~2)    & 4.792                          & 0.0233                       \\
+			Drum (ID~1)    & 5.468                          & 0.0378                       \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\subsection{Cogging torque compensation}
+
+Finally, cogging torque compensation was applied to the horn motor.
+The utility measures the position-dependent torque ripple at low speed and stores a correction
+table that the firmware applies in real time:
+
+\begin{listing}[H]
+	\begin{minted}{bash}
+python utils/compensate_cogging.py --target 2 \
+    --speed 5 --average-count 8 \
+    --plot-source --plot-results \
+    --store --verbose
+\end{minted}
+	\caption{Cogging torque compensation for the horn motor (ID~2).}
+	\label{lst:moteus-cog-comp}
+\end{listing}
+
+
+
 \section{Software}
-Only the modules that has been developed or significantly changed since the start of the thesis will be presented.
+Only the modules that have been developed or significantly changed since the start of the thesis will be presented.
+The firmware targets an ESP32-S3 running the Arduino framework on top of FreeRTOS.
+All inter-task communication uses FreeRTOS queues and spinlock-protected shared state,
+so no module blocks another.
+
 \subsection{Main}
+The entry point creates two FreeRTOS queues and then spawns all application tasks
+before yielding permanently in \texttt{loop()}.
+The input queue carries \texttt{InputEvent} structs (footswitch transitions, expression-pedal readings, MIDI notes and CC values);
+the clock queue carries \texttt{ClockMsg} structs (MIDI realtime ticks and transport messages).
+Separating the two queues keeps timing-critical clock messages from being delayed by larger input events.
+
+Task priorities are assigned so that time-sensitive work always pre-empts lower-priority work:
+the controller task (priority 5) pre-empts the clock-sync and input-handler tasks (priority 4),
+which in turn pre-empt the MIDI listener and footswitch tasks (priority 3).
+The mode-selector task sits at the lowest priority (2) because it only needs to poll a rotary switch at 5~Hz.
+\autoref{lst:main-setup} shows the queue and task creation in \texttt{setup()}.
+
+\begin{listing}[H]
+	\begin{minted}{cpp}
+g_inputQueue = xQueueCreate(16, sizeof(InputEvent));
+g_clockQueue = xQueueCreate(32, sizeof(ClockMsg));
+
+g_midiParams.inputQueue = g_inputQueue;
+g_midiParams.clockQueue = g_clockQueue;
+
+xTaskCreate(footSwitchTask,   "footSwitchTask",   4096, g_inputQueue,   3, nullptr);
+xTaskCreate(midiListnerTask,  "midiListnerTask",  4096, &g_midiParams,  3, nullptr);
+xTaskCreate(clockSyncTask,    "clockSyncTask",    4096, g_clockQueue,   4, nullptr);
+xTaskCreate(inputHandlerTask, "inputHandlerTask", 4096, g_inputQueue,   4, nullptr);
+xTaskCreate(controllerTask,   "ControllerTask",   4096, nullptr,        5, nullptr);
+xTaskCreate(modeSelectorTask, "modeSelectorTask", 2048, nullptr,        2, nullptr);
+\end{minted}
+	\caption{Queue creation and task spawning in \texttt{setup()}.}
+	\label{lst:main-setup}
+\end{listing}
+
 \subsection{Clock-sync}
-\subsection{Controller}
-\subsection{Midi-listener}
-\subsection{Mode-selector}
+\texttt{clockSyncTask} receives \texttt{ClockMsg} events from the clock queue and maintains
+a phase-locked estimate of the incoming MIDI clock.
+The message type and its payload are defined in \autoref{lst:clockmsg}.
+
+\begin{listing}[H]
+	\begin{minted}{cpp}
+enum class ClockMsgType : uint8_t {
+    Tick, Start, Stop, ContinueMsg, SongPosition
+};
+
+struct ClockMsg {
+    ClockMsgType type;
+    int64_t      t_us;   // hardware timestamp from esp_timer_get_time()
+    uint16_t     spp;    // song position pointer (SongPosition messages only)
+};
+\end{minted}
+	\caption{\texttt{ClockMsg} type definitions from \texttt{clock\_sync.h}.}
+	\label{lst:clockmsg}
+\end{listing}
+
+MIDI specifies 24 timing clock messages per quarter note, so the tick period at 120~BPM is
+\begin{equation}
+	T_\text{tick} = \frac{60 \times 10^6\,\mu\text{s}}{120 \times 24} \approx 20833\,\mu\text{s}.
+\end{equation}
+Each tick is timestamped with \texttt{esp\_timer\_get\_time()} in the MIDI callback immediately
+and placed on the queue, preserving the hardware timestamp across the scheduling boundary.
+
+The lock-on algorithm is a discrete-time PI loop implemented in \texttt{processTick()}.
+On the first tick after a Start message the measured inter-tick interval is used directly
+to seed the period estimate $T$.
+On subsequent ticks the phase error $e_k$ is the difference between the observed arrival time
+and the predicted arrival time:
+\begin{equation}
+	e_k = t_k - \hat{t}_k .
+\end{equation}
+The period and the next prediction are then corrected by a proportional--integral adjustment,
+\begin{equation}
+	\Delta_k = -\!\left(K_P \, e_k + K_I \textstyle\sum_j e_j\right), \qquad
+	T_{k+1} = T_k + \Delta_k, \qquad
+	\hat{t}_{k+1} = t_k + T_{k+1} + \Delta_k,
+\end{equation}
+with $K_P = 0.20$ and $K_I = 0.02$.
+Errors larger than half the current period are clamped to suppress USB-jitter outliers,
+and the phase adjustment is further clamped to $\pm 30\%$ of the period to prevent
+the estimate from diverging on a single bad tick.
+\autoref{alg:processtick} summarises the full algorithm.
+
+\begin{algorithm}[H]
+	\caption{\texttt{processTick}($t$) --- PI clock recovery}
+	\label{alg:processtick}
+	\begin{algorithmic}[1]
+		\If{not running} \Return \EndIf
+		\If{not locked}
+		\State $\mathit{dt} \gets t - t_\text{last}$
+		\If{$\mathit{dt} \notin [1000,\; 200000]\;\mu\text{s}$} \Return \EndIf
+		\State $T \gets \mathit{dt}$;\quad $\hat{t}_\text{next} \gets t + T$;\quad $\text{locked} \gets \text{true}$
+		\State \Return
+		\EndIf
+		\State $e \gets t - \hat{t}_\text{next}$ \Comment{phase error}
+		\State $e \gets \mathrm{clamp}(e,\; {-0.5T},\; {+0.5T})$ \Comment{reject outliers}
+		\State $\Delta \gets -(K_P \cdot e + K_I \cdot \Sigma e)$
+		\State $\Delta \gets \mathrm{clamp}(\Delta,\; {-0.3T},\; {+0.3T})$
+		\State $T \gets T + \Delta$ \Comment{frequency correction}
+		\State $t_\text{last} \gets t$;\quad $\hat{t}_\text{next} \gets t + T + \Delta$ \Comment{phase correction}
+		\State $n_\text{tick} \gets n_\text{tick} + 1$
+	\end{algorithmic}
+\end{algorithm}
+
+Thread-safe getters (\texttt{clockSyncGetBpm()}, \texttt{clockSyncGetTickCount()}, \texttt{clockSyncGetPhase()})
+allow other tasks to read the smoothed BPM, the cumulative tick counter, and the fractional
+phase within the current tick without holding the spinlock for longer than necessary.
+\texttt{clockSyncGetPhase()} interpolates the phase between ticks in real time using
+\texttt{esp\_timer\_get\_time()}, giving sub-tick resolution to the controller.
+If no tick arrives for more than 500~ms the module declares the clock lost and clears the lock flag.
+
 \subsection{Moteus-config}
+\texttt{moteus-config} encapsulates the CAN-FD peripheral and exposes a single \texttt{hornMoteus()} singleton.
+The ACAN2517FD controller is initialised over SPI at 10~MHz, with the CAN bit rate set to 1~Mbit/s.
+Bit-rate switching (BRS) is disabled because the cable run is short and the simpler classical-CAN framing
+reduces the risk of reflections at the chosen baud rate.
+
+At startup, base PID gains are written to the Moteus controller via its text diagnostic interface,
+as shown in \autoref{lst:moteus-pid}.
+These values are stored only in RAM and apply to both position and velocity closed-loop modes.
+
+\begin{listing}[H]
+	\begin{minted}{cpp}
+// Base gains written to Moteus RAM at startup
+static constexpr double MOTEUS_BASE_KP = 7.0;
+static constexpr double MOTEUS_BASE_KI = 0.4;
+static constexpr double MOTEUS_BASE_KD = 0.7;
+
+snprintf(buf, sizeof(buf), "conf set servo.pid_position.kp %.4f", MOTEUS_BASE_KP);
+g_horn.DiagnosticCommand(buf); delay(20);
+snprintf(buf, sizeof(buf), "conf set servo.pid_position.ki %.4f", MOTEUS_BASE_KI);
+g_horn.DiagnosticCommand(buf); delay(20);
+snprintf(buf, sizeof(buf), "conf set servo.pid_position.kd %.4f", MOTEUS_BASE_KD);
+g_horn.DiagnosticCommand(buf); delay(20);
+\end{minted}
+	\caption{Base PID gain configuration sent to the Moteus at startup via diagnostic commands.}
+	\label{lst:moteus-pid}
+\end{listing}
+
+The controller task later scales these gains at run-time using the Moteus
+\texttt{kp\_scale}, \texttt{kd\_scale}, and \texttt{ilimit\_scale} fields,
+which are transmitted every cycle so the effective gains can change without a reconfiguration round-trip.
+
+\subsection{Controller}
+\texttt{controllerTask} runs at 100~Hz and translates the current \texttt{ReferenceState}
+(desired speed in RPM) into Moteus \texttt{SetPosition} commands.
+Three internal control modes are defined as the \texttt{ControlMode} enum shown in \autoref{lst:controlmode}.
+
+\begin{listing}[H]
+	\begin{minted}{cpp}
+enum class ControlMode { Velocity, BeatSync, Position };
+\end{minted}
+	\caption{\texttt{ControlMode} enum defining the three operating states of the controller.}
+	\label{lst:controlmode}
+\end{listing}
+
+\begin{description}
+	\item[Velocity] The default mode when no MIDI clock is locked.
+	      A velocity command is sent with the position field set to NaN so the Moteus uses
+	      pure velocity control. Acceleration is limited asymmetrically:
+	      $1.67\,\text{rev/s}^2$ when spinning up (approximately 4~s to reach tremolo speed)
+	      and $2.50\,\text{rev/s}^2$ when spinning down,
+	      replicating the different inertia felt during acceleration and deceleration of a
+	      mechanical rotor.
+	      The integral term is disabled ($k_i\text{-scale} = 0$) to avoid wind-up during
+	      speed transitions.
+
+	\item[BeatSync] Entered automatically when \texttt{clockSyncIsLocked()} returns true.
+	      The target velocity is set to the smoothed BPM divided by 60,
+	      mapping one rotor revolution to one quarter note.
+	      The mode starts in a spin-up sub-state using velocity control until the measured
+	      speed is within 15\% of the target.
+	      Once within tolerance, the tick count and fractional inter-tick phase are used to
+	      compute an absolute position setpoint,
+	      \begin{equation}
+		      \theta_\text{ref}(t) = \frac{n_\text{tick} + \phi}{24} \cdot \delta + \theta_\text{offset},
+	      \end{equation}
+	      where $n_\text{tick}$ is the MIDI tick count, $\phi \in [0,1)$ is the inter-tick phase
+	      from \texttt{clockSyncGetPhase()}, $\delta = 1$ is the subdivision factor
+	      (one revolution per quarter note), and $\theta_\text{offset}$ is a fixed offset recorded
+	      when the rotor first achieved speed lock.
+	      The corresponding code is shown in \autoref{lst:beatsync}.
+
+	      \begin{listing}[H]
+		      \begin{minted}{cpp}
+uint64_t ticks    = clockSyncGetTickCount();
+double   subPhase = clockSyncGetPhase();          // 0..1 within one tick
+double   expected = (ticks + subPhase) / 24.0 * SUBDIVISION + s_beatOffset;
+
+cmd.position = expected;   // absolute revolutions
+cmd.velocity = targetVel;  // feed-forward: BPM / 60
+\end{minted}
+		      \caption{Position setpoint computation in BeatSync mode.}
+		      \label{lst:beatsync}
+	      \end{listing}
+
+	\item[Position] Entered when the reference speed is set to zero and the rotor has
+	      decelerated below $0.4\,\text{rev/s}$ ($\approx 24\,\text{RPM}$).
+	      The controller snaps to the nearest whole revolution in the direction of travel
+	      and holds that position, preventing the rotor from coasting to an arbitrary angle.
+\end{description}
+
+\subsection{Midi-listener}
+\texttt{midiListnerTask} initialises USB MIDI using the Adafruit TinyUSB library together with
+the Arduino MIDI library, then enters a polling loop calling \texttt{MIDI.read()}.
+The library dispatches incoming messages to registered callbacks.
+
+Clock callbacks (\texttt{onClock}, \texttt{onStart}, \texttt{onStop}, \texttt{onContinue}, \texttt{onSongPos})
+timestamp the event with \texttt{esp\_timer\_get\_time()} immediately and push a \texttt{ClockMsg}
+onto the clock queue without blocking, so the callback returns before the next USB frame arrives.
+
+Note-on callbacks recognise three pad notes on MIDI channel~10:
+E1 (note~40), F1 (note~41), and F\#1 (note~42) are mapped to \texttt{BUTTON0}, \texttt{BUTTON1},
+and \texttt{BUTTON2} respectively, which the input handler translates to chorale speed, stop, and tremolo speed.
+Control-change messages on channel~1, controller~7 are forwarded as \texttt{MidiCC} events,
+allowing an expression pedal or mod wheel to set rotor speed continuously.
+
+\subsection{Mode-selector}
+\texttt{modeSelectorTask} determines which physical control source is active.
+A four-position rotary switch is wired as a resistor ladder and read via the ADC on pin~A7.
+The raw reading is compared against three thresholds to select one of the four sources
+defined by the \texttt{ControlSource} enum in \autoref{lst:controlsource}.
+
+\begin{listing}[H]
+	\begin{minted}{cpp}
+enum class ControlSource {
+    Footswitch,        // two-button footswitch pedal
+    ExpressionPedal,   // continuous expression pedal (0-5V)
+    MidiKeyboard,      // MIDI note/CC from USB keyboard
+    MidiBeatSync       // beat-synchronised mode driven by MIDI clock
+};
+\end{minted}
+	\caption{\texttt{ControlSource} enum defining the four selectable input sources.}
+	\label{lst:controlsource}
+\end{listing}
+
+A debounce counter requires three consecutive identical ADC readings before committing a change,
+preventing glitches from contact bounce or ADC noise.
+Switching between footswitch and expression pedal also changes the hardware signal path:
+a digital output on pin~D2 drives a SPDT analogue switch, physically routing the TRS socket
+to either the footswitch circuit or the expression pedal ADC input.
+The active source is stored in a spinlock-protected global read by the input-handler task.
+
 \subsection{Input-handler}
+\texttt{inputHandlerTask} sits between raw input events and the \texttt{ReferenceState}
+shared with the controller.
+The key data structures are shown in \autoref{lst:inputevent}.
+
+\begin{listing}[H]
+	\begin{minted}{cpp}
+struct ReferenceState {
+    float angleDeg;   // target rotor angle (unused in velocity modes)
+    float velRPM;     // target rotor speed in RPM
+};
+
+enum class InputSource : uint8_t {
+    Footswitch, ExpPedal, MidiButton, MidiCC
+};
+
+struct InputEvent {
+    InputSource source;
+    union {
+        FootswitchState foot;      // { bool swA, swB }
+        ExpPedalState   expPedal;  // { float voltage }
+        MidiCCEvent     midiCC;    // { uint8_t value }
+        MidiButtonEvent midiButton;
+    } data;
+};
+\end{minted}
+	\caption{\texttt{ReferenceState}, \texttt{InputSource}, and \texttt{InputEvent} type definitions.}
+	\label{lst:inputevent}
+\end{listing}
+
+The task blocks on the input queue and, upon receiving an event, checks the currently selected
+control source before acting:
+
+\begin{itemize}
+	\item A \texttt{Footswitch} event maps the two-switch state to one of three speeds:
+	      switch~A alone selects chorale speed (40~RPM),
+	      switches A and B together select tremolo speed (400~RPM),
+	      and neither switch sets 0~RPM.
+	\item An \texttt{ExpPedal} event maps the raw expression pedal voltage linearly to
+	      a speed between 0 and 400~RPM, with a dead-band near zero to prevent creep.
+	\item A \texttt{MidiButton} event maps the three pad buttons directly to chorale speed,
+	      stop, and tremolo speed.
+	\item A \texttt{MidiCC} event maps the 0--127 controller value to a speed between
+	      0 and 400~RPM with a small dead-band near zero.
+\end{itemize}
+
+The resulting \texttt{ReferenceState} is written atomically via \texttt{referenceSet()},
+which uses a spinlock so the controller task always sees a consistent value.
 
 \cleardoublepage
 

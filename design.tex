@@ -4,6 +4,8 @@
 
 A Leslie Rotating speaker is not a high-fidelity speaker, it is not meant to have the flattest possible frequency response. A Leslie speaker is used to change the sound, not reproduce it \citep{TheatreOrgansMysteryLeslie}.
 
+This chapter presents the current design, which builds on and revises the prototype from the preceding specialisation project \citep{horpedal2025projectthesis}. Many intermediate iterations are omitted; only the key alternatives are discussed at the relevant decision points, with remaining limitations revisited in the discussion.
+
 \section{Electronics}
 
 \subsection{Moteus C1 motor controller}
@@ -23,7 +25,7 @@ The motor controller chosen for this project is the Moteus C1 motor controller. 
 \subsection{Arduino Nano Esp32}
 
 \subsection{CAN Breakout board}
-In order for the Arduino Nano ESP32 to communicate with the moteus c1 motor controller with CAN fd, a CAN-fd transceiver and receiver is needed. The CAN Transceiver MCP2518 from Soldered Electronics features a MCP2518FD IC that allows the use of both CAN 2.0B and CAN-fd \textbf{TODO: kilde datablad}. It also features an on-board jumper to activate a 120 Ohm termination resistor. The Arduino Nano Esp32 connects to CAN breakout board via SPI, the schematic is seen in fig x.
+In order for the Arduino Nano ESP32 to communicate with the moteus c1 motor controller with CAN fd, a CAN-fd transceiver and receiver is needed. The CAN Transceiver MCP2518 from Soldered Electronics features a MCP2518FD IC that allows the use of both CAN 2.0B and CAN-fd \textbf{TODO: kilde datablad}. It also features an on-board jumper to activate a 120 Ohm termination resistor. It is similar to the moteus C1 motorcontroller an open source project. The GitHub repository contains both 3D step files and schematics (see \autoref{app:mcp2518}) which eases integration with other components. The Arduino Nano Esp32 connects to CAN breakout board via SPI, the schematic is seen in fig x.
 
 \begin{figure}
 	\begin{center}

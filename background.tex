@@ -6,50 +6,77 @@
 Although many models have been released upon the years, the Leslie 122 may be the most famous and share the same principle of operation as several other models \citep{TheatreOrgansMysteryLeslie}.
 The basic concept of a Leslie speaker is illustrated in \autoref{fig:leslie-inner-workings}.
 
-The sound signal from an organ or other instrument enters the Leslie and is amplified by a 40-watt amplifier. Then the signal is split with a 12dB per octave 800 Hz, 16 ohm crossover. The treble frequencies are feed to a \nicefrac{3}{4}$''$ Jensen compression driver while the bass frequencies are fed to a 15 inch woofer, both 16 ohm.
-
 \begin{figure}[h]
 	\centering
-	\input{fig/background/leslie-inner-workings.tikz}
+	\scalebox{0.7}{\input{fig/background/leslie-inner-workings.tikz}}
 	\caption{Basic concept of a Leslie speaker. Redrawn from \citet{Leslie122Manual1971}.}
 	\label{fig:leslie-inner-workings}
 \end{figure}
 
-The cabinet usually has three compartments. The upper one houses the treble rotor, the middle houses the speakers and crossover while the lower compartment houses the bass rotor and the amplifier.
+The sound signal from an organ or other instrument enters the Leslie and is amplified by a 40-watt amplifier. Then the signal is split with a 12dB per octave 800 Hz, 16 ohm crossover. The treble frequencies are feed to a \nicefrac{3}{4}$''$ Jensen compression driver while the bass frequencies are fed to a 15 inch woofer, both 16 ohm.
 
-Both speakers them self are stationary, but plays into rotating deflectors (check if both are called reflectors). The compression driver fires up into what starts as vertical tube and flares out making a horn. Although there appear to be two horns, only one is functional, the other is plugged and serves to balance the horn while it spins. A diffuser is located at the end of the horn which will be furthered discussed in section x.
+The cabinet usually has three compartments, see \autoref{fig:inside-leslie147}. The upper one houses the treble rotor, the middle houses the speakers and crossover while the lower compartment houses the bass rotor and the amplifier.
 
-The woofer fires downward into a rotating drum. The drum has straight walls and a scoop that starts vertically and ends horizontally.
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{fig/background/inside-leslie147.jpg}
+	\end{center}
+	\caption{inside Leslie 147, from %http://www.highontechnology.tech/2017/05/leslie-147-magic-rotating-speaker-system.html
+	}\label{fig:inside-leslie147}
+\end{figure}
 
-Both rotors are driven with belts and pulleys by two AC induction motors, one for fast and one for slow.
-(finn kilde på hastigheter og introduser chorale and tremolo)
+Both speakers them self are stationary, but plays into rotating deflectors. The compression driver fires up into what starts as vertical tube and flares out into a horn. Although there appear to be two horns, only one is functional, the other is plugged and serves to balance the horn while it spins. A diffuser is located at the end of the horn which will be furthered discussed in section x.
 
+The woofer fires downward into a rotating drum. The drum normally rotates the other direction compared with the horn (dette trenger kilde). The drum has straight walls and a scoop that starts vertically and ends horizontally.
 
-\cite{lester_story_leslie_2002}
-\cite{Leslie122Manual1971}
-\cite{Leslie1949RotatableTremulantSoundProducer}
-\cite{TheatreOrgansMysteryLeslie}
+Both rotors are driven with belts and pulleys by two AC induction motors, one for fast and one for slow, giving a total of four motors in the Leslie speaker. DC current is in some configurations applied through the fast speed motor in order to brake the speed quicker.
 
-\subsection{Explanation of the Effect}
-\cite{kronland2008realtime}
+The speeds are often controlled by a switch that is located on the side of the organ, see figure x.The slow setting is often referred to as CHORALE while the fast setting is referred to as TREMOLO. Giving three speed modes with the BREAK setting.
 
+There exist no official publications of the velocities of the drum and rotor
+two speed modes, however \cite{Herrera2009} measured
+the rotation rates of a Leslie 44W speaker by feeding audible tones into
+the cabinet and extracting the rotation rates from the periodic envelope
+of the recorded signal. The results are presented in
+Table~\ref{tab:leslie_params}. The drum chorale speed of 0.101 Hz (6.1 RPM)
+appears inconsistent with other sources, which consistently report values
+in the range of 36--40 RPM \cite{HammondWiki}.
 
-\cite{TheatreOrgansMysteryLeslie} Explains the effect of a Leslie speakers as three main effects happening at once. Because the sound radiated out from the rotating deflector is directional, the intensity of the sound source from a listener's point will be varying as the deflector rotates. This effect is called Amplitude Modulation (AM).
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lcc}
+		\hline
+		\textbf{Parameter}   & \textbf{Horn}        & \textbf{Drum}        \\
+		\hline
+		Slow speed (chorale) & 0.672 Hz (40.3 RPM)  & 0.101 Hz (6.1 RPM)   \\
+		Fast speed (tremolo) & 6.920 Hz (415.2 RPM) & 5.955 Hz (357.3 RPM) \\
+		\hline
+	\end{tabular}
+	\caption{Measured rotation rates of a Leslie 44W \cite{Herrera2009}.}
+	\label{tab:leslie_params}
+\end{table}
 
-\textbf{TODO: sett inn equation.}
+%\cite{lester_story_leslie_2002}
+%\cite{Leslie122Manual1971}
+%\cite{Leslie1949RotatableTremulantSoundProducer}
+%\cite{TheatreOrgansMysteryLeslie}
 
-However \cite{TheatreOrgansMysteryLeslie} as the sound source is rotating, its relative velocity to the listener will change, causing Frequency Modulation FM as a result of the Doppler Effect. As the deflector rotates towards the listener the frequency content of the source will be raised and as it rotates away it will be lowered.
+\subsection{The Leslie Effect}
 
-The third effect is
+The rotating horn produces amplitude modulation (AM) and a Doppler-induced frequency modulation (FM) \cite{kronland2008}. In the woofer section, FM is assumed to be negligible, leaving AM as the dominant effect \cite{kronland2008}.
 
+Under free-field conditions, both modulations are approximately sinusoidal, and the resulting percept does not correspond to the typical Leslie effect \cite{kronland2008}. The characteristic sound emerges when cabinet wall reflections are included, giving rise to image sources that interfere with the direct sound and break the periodicity of both modulation laws \cite{kronland2008}. This aperiodic behaviour is visible in measurements made by the authors on a model 122A Leslie cabinet placed in an anechoic chamber and driven with an 800~Hz sinusoidal input. Beyond the cabinet, rotation of both sources produces a time-dependent coupling with the listening room, adding a spatial modulation component \cite{kronland2008}.
 
-%\section{Crossover networks}
+(skriv om diffusers i hornene)
 
+\subsection{Modern takes}
 
 \section{Horn Theory}
+
 An acoustic horn is a waveguide that couples a driver to the surrounding air. The primary function of the horn is acoustic impedance transformation: the compression driver at the throat operates into a high acoustic impedance, while free air at the mouth presents a low impedance. By gradually expanding the cross-sectional area, the horn acts as an acoustic transformer, increasing radiation efficiency significantly compared to a bare driver \citep{Kolbrek2008HornTheoryPart1}.
 
-The most common horn profile is the exponential horn \textbf{TODO: verifiser med kilde}, in which the cross-sectional area $S$ increases exponentially along the axis:
+According to one of Donald Leslie's original patents, \cite{Leslie1949RotatableTremulantSoundProducer}, the horn is preferably of exponential type.
+An exponential horn is a horn where the cross-sectional area $S$ increases exponentially along the axis(acustic centerline):
 \begin{equation}
 	S(x) = S_0\,e^{mx}
 	\label{eq:horn-area}
@@ -384,20 +411,41 @@ The timing clock messages are used to synchronize, sending the byte F8H 24 times
 \cite{deoliveira2017understandingmidipainlesstutorial}
 
 
-\section{Controller Area Network (CAN)}
-\subsection{Message Frame Architecture}
-Communication in CAN is done through
+\section{Controller Area Network}
 
-\cite{voss2008can}
+The Controller Area Network (CAN) protocol is a serial communication
+protocol specified in ISO 11898-1~\cite{iso11898-1}. It employs a
+non-destructive arbitration mechanism for media access control, which
+limits the maximum bit rate to 1~Mbit/s and restricts the payload of a
+single frame to 8~bytes~\cite{hartwich2012can}. The protocol includes
+fault confinement mechanisms based on error frames, error counters, and
+error-active/passive node states~\cite{hartwich2012can}.
 
+In applications requiring higher throughput or larger data payloads per
+frame, these limits can become a constraint, motivating the development
+of an extended protocol.
 
+\subsection{CAN with Flexible Data-Rate (CAN-FD)}
 
+CAN with Flexible Data-Rate (CAN-FD) is an extension of the CAN protocol
+developed by Bosch and presented in 2012, later incorporated into
+ISO 11898-1~\cite{hartwich2012can,iso11898-1}. CAN-FD improves on
+classical CAN in two ways: it supports bit rates higher than 1~Mbit/s,
+and it supports payloads of more than 8~bytes per frame, with a new data
+length coding allowing up to 64~bytes~\cite{hartwich2012can}.
 
-\subsection{Physical Layer}
-\subsection{Bus Arbitration}
+CAN-FD retains the original CAN arbitration mechanism. After arbitration
+is complete, the protocol switches to a shorter bit time for the data
+phase of the frame, and switches back to the standard bit time before
+the receivers transmit their acknowledge bit~\cite{hartwich2012can}.
+All of CAN's fault confinement mechanisms --- including error frames,
+error counters, and error-active/passive modes --- are
+preserved~\cite{hartwich2012can}. CAN-FD protocol controllers are also
+able to participate in standard CAN communication, allowing a gradual
+introduction of CAN-FD nodes into existing CAN
+systems~\cite{hartwich2012can}.
 
-\subsubsection{CAN-fd}
-
+In this project, the moteus C1 motor controller communicates over CAN-FD.
 
 \section{Previous Work on this Project}
 \label{sec:previous-work}
