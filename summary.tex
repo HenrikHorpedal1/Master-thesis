@@ -1,5 +1,5 @@
 \clearpage
-\pagenumbering{roman} 				
+\pagenumbering{roman}
 \setcounter{page}{1}
 
 \pagestyle{fancy}
@@ -12,9 +12,25 @@
 \fancypagestyle{plain}{\fancyhf{}\fancyfoot[LE,RO]{\thepage}\renewcommand{\headrulewidth}{0ex}}
 
 \section*{\Huge Summary}
-\addcontentsline{toc}{chapter}{Summary}	
+\addcontentsline{toc}{chapter}{Summary}
 $\\[0.5cm]$
 
-\noindent Write your summary here...
+\noindent The Leslie speaker is an electromechanical audio device that produces a characteristic sound by physically rotating a horn and a drum baffle in front of stationary speakers. The original speaker cabinets, rely on AC induction motors that switch between two fixed speeds. This thesis presents the design and implementation of a MIDI-controlled Leslie-style speaker that uses brushless DC motors and a digital control system, enabling precise, configurable, and tempo-synchronized rotation of both rotors.
+
+\noindent The system was built around two BLDC motors driven by Moteus C1 controllers. Firmware running on an Arduino Nano ESP32 MIDI input over USB-C, and exposes four control sources selectable through a front-panel rotary switch. In the beat-sync mode, a software phase-locked loop recovers a stable tempo estimate from the jittery MIDI clock stream and drives the rotor position so that the horn aligns to musically meaningful subdivisions in real time.
+
+\noindent The resulting prototype demonstrates a low-cost Leslie alternative with capabilities beyond the original cabinets. To the author's knowledge, no prior physical Leslie implementation has locked the physical rotation of a real cabinet to an external musical clock. The work integrates mechanical design, embedded firmware and control theory working system, and provides a foundation for further refinement.
+
+\clearpage
+
+\section*{\Huge Sammendrag}
+\addcontentsline{toc}{chapter}{Sammendrag}
+$\\[0.5cm]$
+
+\noindent Leslie-høyttaleren er en elektromekanisk enhet som skaper sin karakteristiske klang ved å fysisk rotere et horn og en trommel foran to stasjonære høyttalere. De originale kabinettene, som fortsatt er ettertraktede, benytter AC-induksjonsmotorer med to faste hastigheter. Denne masteroppgaven presenterer design og implementasjon av en MIDI-styrt Leslie-variant som bruker børsteløse likestrømsmotorer og et digital kontrollsystem, noe som muliggjør presis, konfigurerbar og temposynkronisert rotasjon av begge rotorene.
+
+\noindent Systemet er bygget rundt to BLDC-motorer drevet av to Moteus C1 motorkontrollere. Programvare som kjører på en Arduino Nano ESP32 behandler MIDI-inndata over USB-C, og eksponerer fire styrekilder som kan velges via en bryter på frontpanelet. I temposynkroniserende modus beregnes et stabilt tempoestimat fra en ekstern MIDI-klokke ved hjelp av PLL. Rotorposisjonen styres da til å rotere i takt med musikken med valgbare underdelinger.
+
+\noindent Den ferdige prototypen demonstrerer et rimeligere alternativ til Leslien med funksjonalitet utover de originale kabinettene. Så vidt forfatteren vet, har ingen tidligere fysisk implementasjon av en Leslie synkronisert rotasjonen til en ekstern musikalsk klokke. Arbeidet som er gjort er mekanisk design, innvevde datasystemer, reguleringsteknikk og legger et grunnlag for videre forbedring.
 
 \clearpage

@@ -7,7 +7,7 @@ AUX="build/main.aux"
 OUT="build/main.out"
 
 if [ -f "$AUX" ] && [ -s "$AUX" ]; then
-    if ! tail -c 100 "$AUX" | grep -qF '\relax'; then
+    if ! tail -c 100 "$AUX" | grep -qE '\\relax|\\gdef'; then
         echo "texrun: corrupted aux detected — removing build/main.{aux,out,toc}" >&2
         rm -f "$AUX" "$OUT" "build/main.toc"
     fi

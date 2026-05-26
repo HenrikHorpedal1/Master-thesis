@@ -28,6 +28,7 @@
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{nicefrac}
+\usepackage{gensymb}
 \usepackage{underscore} % makes _ safe outside math mode (fixes Inkscape-exported SVG labels)
 
 \usepackage{fvextra}
@@ -63,16 +64,16 @@
 	damper/.style = {
 			thick,
 			decoration={
-				markings,
-				mark connection node=dmp,
-				mark=at position 0.5 with {
-					\node (dmp) [thick, inner sep=0pt, transform shape, rotate=-90,
-					             minimum width=25pt, minimum height=5pt, draw=none] {};
-					\draw [thick] ($(dmp.north east)+(2pt,0)$) -- (dmp.south east)
-					              -- (dmp.south west) -- ($(dmp.north west)+(2pt,0)$);
-					\draw [thick] ($(dmp.north)+(0,-8pt)$) -- ($(dmp.north)+(0,8pt)$);
-				}
-			},
+					markings,
+					mark connection node=dmp,
+					mark=at position 0.5 with {
+							\node (dmp) [thick, inner sep=0pt, transform shape, rotate=-90,
+								minimum width=25pt, minimum height=5pt, draw=none] {};
+							\draw [thick] ($(dmp.north east)+(2pt,0)$) -- (dmp.south east)
+							-- (dmp.south west) -- ($(dmp.north west)+(2pt,0)$);
+							\draw [thick] ($(dmp.north)+(0,-8pt)$) -- ($(dmp.north)+(0,8pt)$);
+						}
+				},
 			decorate
 		},
 	belt/.style   = {line width=0.75pt},

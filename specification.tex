@@ -1,22 +1,144 @@
 %===================================== CHAP 5 =================================
 
 \chapter{Specification}
-\section{Mechanincal}
-\begin{itemize}
-	\item The cabinet should be solid and well contructed, not vibrate when rotors are spinning.
-	\item Both rotating deflectors should be well balanced without noticable wobble.
-	\item The noise and vibrations from bearings and the drive belt should not be notibly noticable when playing and recoding the Leslie speaker.
-\end{itemize}
 
-\section{Software}
+Each requirement is assigned a unique identifier and a testable acceptance criterion.
+Test procedures are referenced in \autoref{chap:test}.
 
+\section{Mechanical}
 
-\section{Controller preformance}
-\subsection{Chorale - Tremolo mode}
-\subsection{RPM mode}
-\subsection{Beat synchronization}
-Lets just start with: the leslie should be able to track the phase consistently within in 1 degrees up to 7Hz. It should be able to switch tempos within in one bar.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{1.2cm} p{5.5cm} p{6cm}}
+		\toprule
+		\textbf{ID} & \textbf{Requirement}                                                                                  & \textbf{Acceptance criterion} \\
+		\midrule
+		MEC-1       & The cabinet shall produce no audible rattles or resonances at any rotor speed between 0 and 400\,RPM. &
+		Sweep each rotor from 0 to 400\,RPM with no music playing; no rattles audible at 0.5\,m.                                                            \\[4pt]
+		MEC-2       & Both rotors shall exhibit no visible wobble at chorale speed and tremolo speed.                       &
+		Visual inspection at 40\,RPM and 400\,RPM; no wobble observed.                                                                                      \\[4pt]
+		MEC-3       & Drive belt and bearing noise shall not be audible during playback at normal listening volume.         &
+		Run both rotors at 400\,RPM while playing music at approximately 80\,dB\,SPL at 1\,m; mechanical noise is not audible.                              \\
+		\bottomrule
+	\end{tabular}
+	\caption{Mechanical requirements.}
+	\label{tab:spec-mechanical}
+\end{table}
+
+\section{Controller Performance}
+
+\subsection{Velocity Mode}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{1.2cm} p{5.5cm} p{6cm}}
+		\toprule
+		\textbf{ID} & \textbf{Requirement}                                                                                                     & \textbf{Acceptance criterion} \\
+		\midrule
+		CTL-1       & In chorale mode, steady-state rotor speed shall be 40\,$\pm$\,4\,RPM (10\,\%) once the rotor has spun up.                &
+		Issue chorale command; log speed from encoder. Steady-state error shall be within $\pm$4\,RPM.                                                                         \\[4pt]
+		CTL-2       & In tremolo mode, steady-state rotor speed shall be 400\,$\pm$\,40\,RPM (10\,\%) once the rotor has spun up.              &
+		Issue tremolo command; log speed. Steady-state error shall be within $\pm$40\,RPM.                                                                                     \\[4pt]
+		CTL-3       & After a stop command the rotor shall decelerate to rest and hold position within $\pm$5\degree{} of the commanded angle. &
+		Issue stop; log position over 30\,s after rotor comes to rest.                                                                                                         \\[4pt]
+		CTL-4       & Spin-up time from rest to tremolo speed shall be configurable and shall match the configured value within 20\,\%.        &
+		Set three different rise-time values; measure actual time to reach 90\,\% of target speed. Each measurement shall be within 20\,\% of the configured value.            \\[4pt]
+		CTL-5       & Spin-down time from tremolo speed to rest shall be configurable and shall match the configured value within 20\,\%.      &
+		Set three different fall-time values; measure actual time from tremolo speed to below 5\,RPM. Each measurement shall be within 20\,\% of the configured value.         \\
+		\bottomrule
+	\end{tabular}
+	\caption{Velocity mode requirements.}
+	\label{tab:spec-velocity}
+\end{table}
+
+\subsection{Beat Sync Mode}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{1.2cm} p{5.5cm} p{6cm}}
+		\toprule
+		\textbf{ID} & \textbf{Requirement}                                                                                                          & \textbf{Acceptance criterion} \\
+		\midrule
+		CTL-6       & Steady-state phase error between rotor position and MIDI clock shall be less than $\pm$5\degree{} over the BPM range 60--180. &
+		Log \texttt{clockSyncGetPhase()} against encoder position at 60, 90, 120, and 180\,BPM; RMS error shall be below 5\degree{} at each tempo.                                  \\[4pt]
+		CTL-7       & After a tempo change the rotor shall re-lock to the new tempo within one bar (4 quarter notes).                               &
+		Change BPM mid-playback; measure elapsed time from tempo change to phase error $< 5\degree{}$.                                                                              \\[4pt]
+		CTL-8       & Beat sync shall be independently selectable for the horn and drum rotors via the mode selector.                               &
+		Set mode selector to \textsc{MidiBeatSync}; verify each rotor can be enabled or disabled independently.                                                                     \\
+		\bottomrule
+	\end{tabular}
+	\caption{Beat sync mode requirements.}
+	\label{tab:spec-beatsync}
+\end{table}
+
+\section{Cost}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{1.2cm} p{5.5cm} p{6cm}}
+		\toprule
+		\textbf{ID} & \textbf{Requirement}                                                                                                                                                             & \textbf{Acceptance criterion} \\
+		\midrule
+		COST-1      & The total component cost of the system shall be significantly lower than a commercially available Leslie speaker (NOK~82\,900 for a new Leslie 122H \citep{thomann_leslie122h}). &
+		A bill of materials listing all purchased components with prices shall demonstrate a substantially lower total cost.                                                                                                           \\
+		\bottomrule
+	\end{tabular}
+	\caption{Cost requirement.}
+	\label{tab:spec-cost}
+\end{table}
+
+\section{Acoustic Performance}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{1.2cm} p{5.5cm} p{6cm}}
+		\toprule
+		\textbf{ID} & \textbf{Requirement}                                                                  & \textbf{Acceptance criterion} \\
+		\midrule
+		ACS-1       & The rotating horn shall produce a clearly perceptible Leslie effect at tremolo speed. &
+		Subjective listening test; see \autoref{chap:test}.                                                                                 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Acoustic performance requirements.}
+	\label{tab:spec-acoustic}
+\end{table}
+
+\section{MIDI Interface}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{1.2cm} p{5.5cm} p{6cm}}
+		\toprule
+		\textbf{ID} & \textbf{Requirement}                                                                                                  & \textbf{Acceptance criterion} \\
+		\midrule
+		MIDI-1      & The system shall respond correctly to Timing Clock, Start, Stop, and Continue messages.                               &
+		Send each message type from a DAW; verify correct state transitions in the firmware.                                                                                \\[4pt]
+		MIDI-2      & The PI clock-recovery loop shall remain locked despite USB jitter.                                                    &
+		Log inter-tick intervals over 60\,s; verify \texttt{clockSyncIsLocked()} remains true throughout and characterise the jitter standard deviation.                    \\[4pt]
+		MIDI-3      & MIDI notes 40, 41, and 42 on channel 10 shall select chorale, stop, and tremolo within one controller cycle (10\,ms). &
+		Send each note-on; log timestamp against the resulting \texttt{ReferenceState} update.                                                                              \\
+		\bottomrule
+	\end{tabular}
+	\caption{MIDI interface requirements.}
+	\label{tab:spec-midi}
+\end{table}
+
+\section{User Interface}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{1.2cm} p{5.5cm} p{6cm}}
+		\toprule
+		\textbf{ID} & \textbf{Requirement}                                                                                          & \textbf{Acceptance criterion} \\
+		\midrule
+		UI-1        & The 4-position rotary switch shall select between all four control sources without ambiguity.                 &
+		Rotate through all positions; verify the \texttt{ControlSource} enum matches the selected position in each case.                                            \\[4pt]
+		UI-2        & The expression pedal shall map 0--5\,V to 0--400\,RPM with a dead-band near 0\,V preventing unintended creep. &
+		Sweep pedal voltage from 0 to 5\,V; log commanded RPM. Verify 0\,RPM at zero, 400\,RPM at full, and that the dead-band prevents creep near zero.            \\
+		\bottomrule
+	\end{tabular}
+	\caption{User interface requirements.}
+	\label{tab:spec-ui}
+\end{table}
 
 \cleardoublepage
-
-
